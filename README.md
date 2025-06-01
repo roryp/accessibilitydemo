@@ -1,5 +1,24 @@
 # Accessibility Issues Demo - Learning Guide
 
+## 📊 Automated Accessibility Report
+
+This project’s GitHub Actions workflow now generates a detailed HTML accessibility report on every run.
+
+### How it works
+
+- After running automated accessibility tests, the workflow creates an `accessibility-report.html` file.
+- The report summarizes all violations for both the “issues” and “fixed” demo pages, with clear descriptions and affected elements.
+- The HTML report is uploaded as a workflow artifact for easy download and review.
+
+### How to view the report
+
+1. Push your changes or open a pull request to trigger the workflow.
+2. Go to the “Actions” tab in your GitHub repository.
+3. Select the latest workflow run.
+4. Download the `axe-results` artifact.
+5. Open `accessibility-report.html` in your browser for a full, readable summary of the results.
+
+
 This project demonstrates common web accessibility issues and their solutions. The goal is to help developers understand what makes websites inaccessible and how to fix these problems.
 
 ## 🤖 How to Recreate This Project with GitHub Copilot (Claude 4)
