@@ -347,6 +347,58 @@ Remember: While AI tools are excellent for learning and generating examples, alw
 
 ## Quick Start Guide
 
+## 🛠️ How to Fix Accessibility Issues with GitHub Copilot
+
+You can use GitHub Copilot to quickly identify and fix accessibility issues in files like [`accessibility-issues-demo.html`](./accessibility-issues-demo.html). Copilot can suggest code changes, explain accessibility problems, and even generate accessible alternatives for problematic code.
+
+### How to Use Copilot to Fix Accessibility Issues
+
+1. **Open the file with issues** (e.g., `accessibility-issues-demo.html`).
+2. **Highlight the problematic code** or place your cursor near it.
+3. **Ask Copilot for a fix** using a prompt (see examples below).
+4. **Review and accept Copilot’s suggestions**. Test the result for accessibility.
+
+### Sample Copilot Prompts for Accessibility Fixes
+
+Here are some example prompts you can use with Copilot to address issues in `accessibility-issues-demo.html`:
+
+```
+Fix all color contrast issues in this HTML file to meet WCAG AA standards.
+```
+
+```
+Add missing alt text to all images and use empty alt for decorative images.
+```
+
+```
+Correct the heading hierarchy so it starts with <h1> and follows logical order.
+```
+
+```
+Make all form fields properly labeled and ensure the submit button is a semantic <button>.
+```
+
+```
+Replace custom dropdown with a native <select> element for accessibility.
+```
+
+```
+Remove or provide controls for any auto-playing or blinking content.
+```
+
+```
+Add a lang attribute to the <html> tag and ensure proper page structure.
+```
+
+### Tips for Effective Copilot Prompts
+
+- Be specific about the accessibility issue you want to fix.
+- Reference WCAG guidelines if possible (e.g., "fix to meet WCAG 2.1 AA").
+- Ask for both the fix and a brief explanation if you want to learn more.
+- Always review Copilot’s suggestions and test with accessibility tools.
+
+---
+
 1. Open both HTML files in your browser
 2. Compare the visual and functional differences
 3. Use a screen reader to experience the differences
