@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Issues Fixed - Best Practices Demo</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .good-contrast {
+            background-color: #f8f9fa;
+            color: #333333;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+        }        .btn {
+            background-color: #0056b3;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #003d82;
+        }
+        .btn:focus {
+            outline: 3px solid #80bdff;
+            outline-offset: 2px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #000;
+            color: #fff;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+        }
+        .skip-link:focus {
+            top: 6px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border: 1px solid #ddd;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover, .dropdown-content a:focus {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+        <h1>Accessibility Best Practices Demo</h1>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="#main-content">Home</a></li>
+                <li><a href="#contact-form">Contact</a></li>
+                <li><a href="#data-table">Products</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content" class="container">
+        <!-- Fixed: Proper heading hierarchy -->
+        <section>
+            <h2>Welcome to Our Accessible Website</h2>
+            <h3>This heading order follows proper hierarchy</h3>
+            
+            <!-- Fixed: Good color contrast -->
+            <div class="good-contrast">
+                <p>This text has excellent contrast and is easy to read for everyone!</p>
+            </div>
+        </section>
+
+        <!-- Fixed: Images with proper alt text -->
+        <section>
+            <h2>Images with Proper Alt Text</h2>
+            <img src="important-chart.jpg" alt="Sales chart showing 25% increase in Q4 2024" width="300" height="200">
+            <img src="decorative-icon.png" alt="" role="presentation">
+            <p><em>Note: Decorative images should have empty alt text (alt="") or role="presentation"</em></p>
+        </section>
+
+        <!-- Fixed: Form with proper labels and structure -->
+        <section>
+            <h2 id="contact-form">Accessible Contact Form</h2>
+            <form>
+                <fieldset>
+                    <legend>Contact Information</legend>
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name (required)</label>
+                        <input type="text" id="name" name="name" required aria-describedby="name-help">
+                        <small id="name-help">Please enter your first and last name</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address (required)</label>
+                        <input type="email" id="email" name="email" required aria-describedby="email-help">
+                        <small id="email-help">We'll use this to respond to your message</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number (optional)</label>
+                        <input type="tel" id="phone" name="phone" aria-describedby="phone-help">
+                        <small id="phone-help">Include area code for US numbers</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message (required)</label>
+                        <textarea id="message" name="message" rows="5" required aria-describedby="message-help"></textarea>
+                        <small id="message-help">Please provide details about your inquiry</small>
+                    </div>
+                    
+                    <!-- Fixed: Proper semantic button -->
+                    <button type="submit" class="btn">Send Message</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <!-- Fixed: Descriptive link text -->
+        <section>
+            <h2>Helpful Resources</h2>
+            <p>Learn more about our services:</p>
+            <ul>
+                <li><a href="info.html">Read our detailed service information</a></li>
+                <li><a href="details.html">View our complete product specifications</a></li>
+                <li><a href="accessibility.html">Learn about our accessibility commitment</a></li>
+            </ul>
+        </section>
+
+        <!-- Fixed: Table with proper headers and structure -->
+        <section>
+            <h2 id="data-table">Product Information</h2>
+            <table>
+                <caption>Current product inventory and pricing</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Price (USD)</th>
+                        <th scope="col">Availability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Widget A</th>
+                        <td>$19.99</td>
+                        <td>In Stock</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Widget B</th>
+                        <td>$29.99</td>
+                        <td>Out of Stock</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Fixed: No auto-updating or blinking content -->
+        <section>
+            <h2>Important Notice</h2>
+            <div role="alert" aria-live="polite">
+                <p><strong>Notice:</strong> This important message is delivered without blinking or auto-updating content that could cause seizures.</p>
+            </div>
+        </section>
+
+        <!-- Fixed: Accessible dropdown menu -->
+        <section>
+            <h2>Country Selection</h2>
+            <div class="form-group">
+                <label for="country-select">Select your country:</label>
+                <select id="country-select" name="country">
+                    <option value="">Choose a country</option>
+                    <option value="usa">United States</option>
+                    <option value="canada">Canada</option>
+                    <option value="mexico">Mexico</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Fixed: Accessible media with controls -->
+        <section>
+            <h2>Video Content</h2>
+            <video width="320" height="240" controls aria-describedby="video-description">
+                <source src="background-video.mp4" type="video/mp4">
+                <track kind="captions" src="captions.vtt" srclang="en" label="English captions">
+                Your browser does not support the video tag.
+            </video>
+            <p id="video-description">This video demonstrates our product features with captions available.</p>
+        </section>
+
+        <!-- Fixed: Proper interactive elements -->
+        <section>
+            <h2>Interactive Elements</h2>
+            <button type="button" class="btn" onclick="showMessage()" aria-describedby="button-help">
+                Accessible Interactive Button
+            </button>
+            <p id="button-help">This button demonstrates proper focus management and semantic markup.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Accessible Demo. All rights reserved.</p>
+        <p><a href="accessibility-statement.html">Accessibility Statement</a></p>
+    </footer>
+
+    <script>
+        function showMessage() {
+            // Create accessible alert
+            const alertDiv = document.createElement('div');
+            alertDiv.setAttribute('role', 'alert');
+            alertDiv.setAttribute('aria-live', 'assertive');
+            alertDiv.textContent = 'Button activated successfully!';
+            alertDiv.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #d4edda; color: #155724; padding: 15px; border: 1px solid #c3e6cb; border-radius: 4px; z-index: 1000;';
+            
+            document.body.appendChild(alertDiv);
+            
+            // Remove alert after 3 seconds
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.parentNode.removeChild(alertDiv);
+                }
+            }, 3000);
+        }
+
+        // Ensure forms are accessible
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Create success message
+                    const successDiv = document.createElement('div');
+                    successDiv.setAttribute('role', 'alert');
+                    successDiv.setAttribute('aria-live', 'polite');
+                    successDiv.textContent = 'Form submitted successfully! We will respond within 24 hours.';
+                    successDiv.style.cssText = 'background: #d4edda; color: #155724; padding: 15px; border: 1px solid #c3e6cb; border-radius: 4px; margin: 20px 0;';
+                    
+                    form.parentNode.insertBefore(successDiv, form.nextSibling);
+                    
+                    // Focus management - move focus to success message
+                    successDiv.focus();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

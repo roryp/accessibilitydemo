@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accessibility Issues Demo - What NOT to Do</title>
+    <style>
+        body {
+            background-color: #ffff00;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 20px;
+        }
+        .low-contrast {
+            background-color: #f0f0f0;
+            color: #ffffff;
+            padding: 10px;
+        }
+        .small-text {
+            font-size: 8px;
+        }
+        .button-like {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .hidden-label {
+            display: none;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        .blinking {
+            animation: blink 1s linear infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Issue 1: Missing main landmark and heading hierarchy -->
+        <div>
+            <h3>Welcome to Our Website</h3>
+            <h1>This heading order is wrong</h1>
+        </div>
+
+        <!-- Issue 2: Poor color contrast -->
+        <div class="low-contrast">
+            <p>This text has very poor contrast and is hard to read!</p>
+        </div>
+
+        <!-- Issue 3: Images without alt text -->
+        <img src="important-chart.jpg" width="300" height="200">
+        <img src="decorative-icon.png" alt="A beautiful decorative image that adds no informational value but has unnecessary alt text">
+
+        <!-- Issue 4: Form without proper labels -->
+        <form>
+            <h2>Contact Form</h2>
+            <p>Name:</p>
+            <input type="text" placeholder="Enter your name">
+            
+            <p>Email:</p>
+            <input type="email">
+            
+            <label class="hidden-label" for="phone">Phone:</label>
+            <input type="tel" id="phone" placeholder="Phone number">
+            
+            <p>Message:</p>
+            <textarea placeholder="Your message here"></textarea>
+            
+            <!-- Issue 5: Non-semantic button -->
+            <div class="button-like" onclick="submitForm()">Submit</div>
+        </form>
+
+        <!-- Issue 6: Links without descriptive text -->
+        <p>For more information, <a href="info.html">click here</a> or <a href="details.html">read more</a></p>
+
+        <!-- Issue 7: Table without headers -->
+        <table>
+            <tr>
+                <td>Product</td>
+                <td>Price</td>
+                <td>Stock</td>
+            </tr>
+            <tr>
+                <td>Widget A</td>
+                <td>$19.99</td>
+                <td>In Stock</td>
+            </tr>
+            <tr>
+                <td>Widget B</td>
+                <td>$29.99</td>
+                <td>Out of Stock</td>
+            </tr>
+        </table>
+
+        <!-- Issue 8: Content that auto-updates/blinks -->
+        <p class="blinking">🚨 URGENT: This text blinks and can cause seizures! 🚨</p>
+
+        <!-- Issue 9: Tiny text -->
+        <p class="small-text">This text is way too small to read comfortably and violates WCAG guidelines for minimum font size.</p>
+
+        <!-- Issue 10: Missing language attribute and page structure -->
+        <!-- Issue 11: Auto-playing content -->
+        <video width="320" height="240" autoplay loop>
+            <source src="background-video.mp4" type="video/mp4">
+        </video>
+
+        <!-- Issue 12: Inaccessible custom dropdown -->
+        <div>
+            <p>Select your country:</p>
+            <div onclick="toggleDropdown()" style="border: 1px solid black; padding: 5px; cursor: pointer;">
+                Select Country ▼
+            </div>
+            <div id="dropdown" style="display: none; border: 1px solid black;">
+                <div onclick="selectCountry('USA')">USA</div>
+                <div onclick="selectCountry('Canada')">Canada</div>
+                <div onclick="selectCountry('Mexico')">Mexico</div>
+            </div>
+        </div>
+
+        <!-- Issue 13: Focus management problems -->
+        <div tabindex="0" onclick="doSomething()" style="background: blue; color: white; padding: 10px; margin: 10px;">
+            This div pretends to be interactive but has poor focus management
+        </div>
+
+    </div>
+
+    <script>
+        function submitForm() {
+            alert("Form submitted!");
+        }
+
+        function toggleDropdown() {
+            var dropdown = document.getElementById("dropdown");
+            dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+        }
+
+        function selectCountry(country) {
+            alert("Selected: " + country);
+            document.getElementById("dropdown").style.display = "none";
+        }
+
+        function doSomething() {
+            alert("Something happened!");
+        }
+    </script>
+</body>
+</html>
