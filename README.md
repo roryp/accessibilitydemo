@@ -442,18 +442,15 @@ For more information and tutorials, visit the [Accessibility Insights documentat
 
 **1. FastPass Automated Check**
 
-![Accessibility Insights FastPass results highlighting issues on the demo HTML file](./screenshots/accessibility-insights-fastpass.png)
+![Accessibility Insights FastPass results highlighting issues on the demo HTML file](./screenshots/acc_ins_full.jpeg)
 
 *Above: FastPass highlights accessibility issues directly on the page and lists them in a sidebar.*
 
-> **Image source:** [accessibility.education.gov.uk](https://accessibility.education.gov.uk/assets/images/acc_ins.jpeg)
 
 **2. Assessment Panel**
 
-![Accessibility Insights Assessment panel with step-by-step checks and guidance](./screenshots/accessibility-insights-assessment.png)
+![Accessibility Insights Assessment panel with step-by-step checks and guidance](./screenshots/acc_ins_full.jpeg)
 
 *Above: The Assessment panel provides a comprehensive, guided audit with explanations and remediation steps for each requirement.*
-
-> **Image source:** [accessibility.education.gov.uk](https://accessibility.education.gov.uk/assets/images/acc_ins_full.jpeg)
 
 Remember: Accessibility benefits everyone, not just users with disabilities. It improves SEO, usability, and creates a better web for all users.
