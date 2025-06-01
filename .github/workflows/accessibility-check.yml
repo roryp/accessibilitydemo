@@ -155,9 +155,9 @@ jobs:
             body: report
           });
 
-    - name: Check if fixed demo has violations
+    - name: Create check script
       run: |
-        node -e "
+        cat > check-results.js << 'EOF'
         const fs = require('fs');
         try {
           const results = JSON.parse(fs.readFileSync('accessibility-fixed-results.json', 'utf8'));
@@ -176,22 +176,29 @@ jobs:
           console.log('Error checking results:', error.message);
           process.exit(1);
         }
-        "
+        EOF
+
+    - name: Check if fixed demo has violations
+      run: node check-results.js
+
+    - name: Create summary script
+      run: |
+        cat > summary.js << 'EOF'
+        const fs = require('fs');
+        try {
+          const results = JSON.parse(fs.readFileSync('accessibility-fixed-results.json', 'utf8'));
+          const violations = results.violations ? results.violations.length : 0;
+          console.log(violations === 0 ? 'PASSED (no violations)' : violations + ' violations found');
+        } catch (e) {
+          console.log('Error reading results');
+        }
+        EOF
 
     - name: Display final summary
       run: |
         echo "🔍 Accessibility Check Summary:"
         echo "================================"
         echo "✅ Issues demo: Tested (violations expected)"
-        echo "🎯 Fixed demo: $(node -e "
-          const fs = require('fs');
-          try {
-            const results = JSON.parse(fs.readFileSync('accessibility-fixed-results.json', 'utf8'));
-            const violations = results.violations ? results.violations.length : 0;
-            console.log(violations === 0 ? 'PASSED (no violations)' : violations + ' violations found');
-          } catch (e) {
-            console.log('Error reading results');
-          }
-        ")"
+        echo "🎯 Fixed demo: $(node summary.js)"
         echo ""
         echo "📋 Full report available in artifacts"
