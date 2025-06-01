@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
@@ -31,18 +31,18 @@ jobs:
       # Give the server a moment to start up
       - name: Wait for server
         run: sleep 5
-
+        
       - name: Run accessibility tests
         run: node run-axe-tests.js
-
+        
       - name: Upload results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: axe-results
           path: |
             accessibility-issues-results.json
             accessibility-fixed-results.json
-
+            
       # Check if there are violations in the fixed demo (should be none)
       - name: Check for accessibility violations in fixed demo
         run: |
