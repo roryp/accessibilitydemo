@@ -193,18 +193,56 @@ Use semantic HTML and include real-world examples that developers commonly encou
 - **WAVE**: Web accessibility evaluation tool
 - **Lighthouse**: Built into Chrome DevTools
 
-### Manual Testing
-- **Keyboard Navigation**: Tab through the entire page
-- **Screen Reader**: Test with NVDA (Windows), JAWS, or VoiceOver (Mac)
-- **Color Contrast**: Use tools like WebAIM's contrast checker
-- **Zoom**: Test at 200% zoom level
+### 🚀 Automated CI/CD Testing with GitHub Actions
 
-### Keyboard Testing Checklist
-- [ ] Can you reach all interactive elements with Tab?
-- [ ] Is the focus order logical?
-- [ ] Are focus indicators clearly visible?
-- [ ] Can you activate buttons/links with Enter/Space?
-- [ ] Can you navigate menus with arrow keys?
+This project includes a GitHub Action that automatically tests both HTML files for accessibility issues on every push and pull request.
+
+#### What the GitHub Action Does:
+1. **Sets up testing environment** with Node.js and accessibility tools
+2. **Starts a local server** to serve the HTML files
+3. **Runs axe-core tests** on both demo files
+4. **Generates detailed reports** with violation descriptions and impact levels
+5. **Uploads results as artifacts** for download and review
+6. **Comments on pull requests** with accessibility findings
+7. **Fails the build** if the fixed demo has critical/serious violations
+
+#### Workflow File Location:
+```
+.github/workflows/accessibility-check.yml
+```
+
+#### Key Features:
+- **Automated on push/PR**: Runs automatically when code is pushed
+- **Dual testing**: Tests both the broken and fixed versions
+- **Detailed reporting**: Shows violation types, descriptions, and impact levels
+- **Artifact storage**: Saves JSON results and markdown reports
+- **PR integration**: Comments directly on pull requests with results
+- **Quality gates**: Fails if the "fixed" version has serious accessibility issues
+
+#### Expected Results:
+- **Issues Demo**: Should find multiple violations (expected behavior)
+- **Fixed Demo**: Should have zero or minimal violations
+
+#### How to Use:
+1. Push your changes to trigger the workflow
+2. Check the "Actions" tab in your GitHub repository
+3. Download the accessibility results from the workflow artifacts
+4. Review any violations found in the fixed demo and address them
+
+#### Local Testing Commands:
+If you want to run the same tests locally:
+
+```bash
+# Install dependencies
+npm install --save-dev @axe-core/cli puppeteer serve
+
+# Start local server
+npx serve . -l 3000 &
+
+# Run accessibility tests
+npx axe http://localhost:3000/accessibility-issues-demo.html --reporter json
+npx axe http://localhost:3000/accessibility-fixed-demo.html --reporter json
+```
 
 ## WCAG 2.1 Compliance Levels
 
