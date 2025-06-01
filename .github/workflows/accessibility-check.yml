@@ -35,6 +35,9 @@ jobs:
       - name: Run accessibility tests
         run: node run-axe-tests.js
         
+      - name: Generate HTML report
+        run: node generate-report.js
+        
       - name: Upload results
         uses: actions/upload-artifact@v4
         with:
@@ -42,6 +45,7 @@ jobs:
           path: |
             accessibility-issues-results.json
             accessibility-fixed-results.json
+            accessibility-report.html
             
       # Check if there are violations in the fixed demo (should be none)
       - name: Check for accessibility violations in fixed demo
