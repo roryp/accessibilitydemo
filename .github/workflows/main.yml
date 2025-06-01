@@ -1,0 +1,42 @@
+# .github/workflows/accessibility-scan.yml
+name: Accessibility Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  a11y:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4  # ensures HTML files are available in $GITHUB_WORKSPACE :contentReference[oaicite:1]{index=1}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Pa11y CI
+        run: npm install -g pa11y-ci  # installs Pa11y CI globally so we can run it on local files :contentReference[oaicite:2]{index=2}
+
+      - name: Create Pa11y CI configuration
+        run: |
+          echo '{
+            "defaults": {
+              "standard": "WCAG2AA",
+              "include": ["./*.html"]
+            }
+          }' > .pa11yci  # scan all .html files in the repo root (./*.html) :contentReference[oaicite:3]{index=3}
+
+      - name: Run Pa11y CI
+        run: pa11y-ci --config .pa11yci --reporter html > accessibility-report.html  
+        # this will generate an HTML report named accessibility-report.html :contentReference[oaicite:4]{index=4}
+
+      - name: Upload accessibility report
+        uses: actions/upload-artifact@v3
+        with:
+          name: accessibility-report
+          path: accessibility-report.html
