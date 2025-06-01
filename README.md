@@ -405,4 +405,55 @@ Add a lang attribute to the <html> tag and ensure proper page structure.
 4. Test keyboard navigation on both versions
 5. Run accessibility testing tools on both files
 
+## 🧪 How to Test Accessibility with Accessibility Insights
+
+[Accessibility Insights](https://accessibilityinsights.io/) is a free, open-source tool from Microsoft for finding and fixing accessibility issues in web pages and applications. It works as a browser extension for Chrome and Edge.
+
+### Steps to Test Your HTML Files
+
+1. **Install Accessibility Insights**
+   - Go to [accessibilityinsights.io/downloads](https://accessibilityinsights.io/downloads) and install the browser extension for Chrome or Edge.
+
+2. **Open your demo HTML file**
+   - Open `accessibility-issues-demo.html` or `accessibility-fixed-demo.html` in your browser.
+
+3. **Launch Accessibility Insights**
+   - Click the Accessibility Insights icon in your browser toolbar.
+   - Choose **FastPass** for a quick automated check, or **Assessment** for a comprehensive, step-by-step manual and automated audit.
+
+4. **Review the results**
+   - The tool will highlight accessibility issues directly on the page and provide detailed guidance for each issue, including:
+     - Failing elements
+     - WCAG references
+     - How to fix the problem
+
+5. **Fix issues and retest**
+   - Use the guidance to update your HTML, then rerun the tool to verify fixes.
+
+### Why Use Accessibility Insights?
+- **Comprehensive**: Combines automated and guided manual testing
+- **Actionable**: Gives clear instructions and code examples for fixes
+- **Free and open source**: No cost, no sign-up required
+- **Trusted**: Used by Microsoft and the accessibility community
+
+For more information and tutorials, visit the [Accessibility Insights documentation](https://accessibilityinsights.io/docs/web/overview/).
+
+### Example Screenshots
+
+**1. FastPass Automated Check**
+
+![Accessibility Insights FastPass results highlighting issues on the demo HTML file](./screenshots/accessibility-insights-fastpass.png)
+
+*Above: FastPass highlights accessibility issues directly on the page and lists them in a sidebar.*
+
+> **Image source:** [accessibility.education.gov.uk](https://accessibility.education.gov.uk/assets/images/acc_ins.jpeg)
+
+**2. Assessment Panel**
+
+![Accessibility Insights Assessment panel with step-by-step checks and guidance](./screenshots/accessibility-insights-assessment.png)
+
+*Above: The Assessment panel provides a comprehensive, guided audit with explanations and remediation steps for each requirement.*
+
+> **Image source:** [accessibility.education.gov.uk](https://accessibility.education.gov.uk/assets/images/acc_ins_full.jpeg)
+
 Remember: Accessibility benefits everyone, not just users with disabilities. It improves SEO, usability, and creates a better web for all users.
