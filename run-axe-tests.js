@@ -4,10 +4,11 @@ const fs = require('fs');
 
 async function runAxe(url, outputFile) {
   console.log(`Testing ${url} for accessibility issues...`);
-  
-  try {
-    // Launch a headless browser
-    const browser = await puppeteer.launch();
+    try {
+    // Launch a headless browser with no-sandbox flag for CI environments
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
     const page = await browser.newPage();
     
     // Navigate to the URL
