@@ -41,13 +41,13 @@ jobs:
           
       - name: Create AI accessibility analyzer
         run: |
-          cat > ai_accessibility_analyzer.py << 'EOF'
-          import requests
+          cat > ai_accessibility_analyzer.py << 'EOF'          import requests
           import json
           import sys
           from bs4 import BeautifulSoup
           import re
-            def call_ollama(prompt, model="tinyllama"):
+          
+          def call_ollama(prompt, model="tinyllama"):
               """Call Ollama API with the tiny model"""
               try:
                   response = requests.post("http://localhost:11434/api/generate", 
