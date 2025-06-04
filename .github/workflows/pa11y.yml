@@ -36,7 +36,10 @@ jobs:
               "ignore": [
                 "notice",
                 "warning"
-              ]
+              ],
+              "chromeLaunchConfig": {
+                "args": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
+              }
             }
           }' > .pa11yci
 
@@ -50,7 +53,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "Testing accessibility-issues-demo.html (expected to have issues)..."
-          npx pa11y-ci http://localhost:8080/accessibility-issues-demo.html --reporter cli --chrome-launcher-flags='--no-sandbox' > pa11y_issues_output.txt 2>&1 || true
+          npx pa11y-ci http://localhost:8080/accessibility-issues-demo.html --reporter cli > pa11y_issues_output.txt 2>&1 || true
           echo "Issues demo test completed"
 
       - name: Test accessibility fixed demo
@@ -58,7 +61,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "Testing accessibility-fixed-demo.html (should pass)..."
-          npx pa11y-ci http://localhost:8080/accessibility-fixed-demo.html --reporter cli --chrome-launcher-flags='--no-sandbox' > pa11y_fixed_output.txt 2>&1 || true
+          npx pa11y-ci http://localhost:8080/accessibility-fixed-demo.html --reporter cli > pa11y_fixed_output.txt 2>&1 || true
           echo "Fixed demo test completed"
 
       - name: Display results for issues demo
