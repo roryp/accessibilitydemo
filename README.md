@@ -248,19 +248,68 @@ This project includes a GitHub Action that automatically tests both HTML files f
 3. Download the accessibility results from the workflow artifacts
 4. Review any violations found in the fixed demo and address them
 
-#### Local Testing Commands:
-If you want to run the same tests locally:
+### 🔍 Pa11y Accessibility Testing
+
+This project also includes a **Pa11y-based accessibility testing workflow** that provides an alternative testing approach using the Pa11y command-line tool.
+
+#### What the Pa11y Workflow Does:
+1. **Sets up Pa11y environment** with Node.js and pa11y-ci
+2. **Configures WCAG2AA standard** with axe runner for comprehensive testing
+3. **Starts a Python HTTP server** to serve the HTML files locally
+4. **Tests both demo files** with concurrent execution for faster results
+5. **Generates CLI output reports** for immediate feedback
+6. **Uploads test results as artifacts** for detailed analysis
+7. **Comments on pull requests** with collapsible test results
+
+#### Workflow File Location:
+```
+.github/workflows/pa11y.yml
+```
+
+#### Key Features:
+- **Pa11y-ci integration**: Uses the industry-standard Pa11y accessibility testing tool
+- **WCAG2AA compliance**: Tests against Web Content Accessibility Guidelines 2.1 AA
+- **Concurrent testing**: Runs tests in parallel for improved performance
+- **Detailed CLI output**: Provides clear, actionable violation reports
+- **PR comments**: Automatically posts test results to pull requests
+- **Expected failures**: Designed to show both failing and passing examples
+
+#### Pa11y Configuration:
+The workflow automatically creates a `.pa11yci` configuration file with:
+- **Standard**: WCAG2AA compliance level
+- **Runner**: axe-core for comprehensive testing
+- **Concurrency**: 4 parallel tests for faster execution
+- **Chrome options**: Optimized for CI environment
+- **Ignore levels**: Filters out notices and warnings to focus on errors
+
+#### Expected Results:
+- **accessibility-issues-demo.html**: Expected to fail with multiple violations
+- **accessibility-fixed-demo.html**: Should pass all accessibility tests
+
+#### Local Pa11y Testing:
+To run Pa11y tests locally, you can use these commands:
 
 ```bash
-# Install dependencies
-npm install --save-dev @axe-core/cli puppeteer serve
+# Install Pa11y globally
+npm install -g pa11y-ci
 
-# Start local server
-npx serve . -l 3000 &
+# Start a local server
+python -m http.server 8080
 
-# Run accessibility tests
-npx axe http://localhost:3000/accessibility-issues-demo.html --reporter json
-npx axe http://localhost:3000/accessibility-fixed-demo.html --reporter json
+# Test individual files
+pa11y http://localhost:8080/accessibility-issues-demo.html --standard WCAG2AA --runner axe
+pa11y http://localhost:8080/accessibility-fixed-demo.html --standard WCAG2AA --runner axe
+```
+
+#### Why Use Pa11y?
+- **Command-line focused**: Great for CI/CD integration and automation
+- **Multiple runners**: Supports axe, htmlcs, and custom accessibility engines
+- **Flexible configuration**: Easy to customize standards and ignore patterns
+- **Industry standard**: Widely adopted tool in the accessibility community
+- **Complementary testing**: Works alongside other tools like axe-core for comprehensive coverage
+
+#### Local Testing Commands:
+If you want to run the same tests locally:
 ```
 
 ## WCAG 2.1 Compliance Levels
