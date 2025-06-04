@@ -1,0 +1,303 @@
+name: AI Accessibility Check
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  ai-accessibility-check:
+    name: AI-Powered Accessibility Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Ollama
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          
+      - name: Start Ollama service
+        run: |
+          # Start Ollama in background and wait for it to be ready
+          ollama serve &
+          sleep 15
+          
+      - name: Pull TinyLlama model (very small - ~1.4GB)
+        run: |
+          # TinyLlama is one of the smallest usable models
+          ollama pull tinyllama
+          
+      - name: Install Python dependencies
+        run: |
+          pip install requests beautifulsoup4 lxml
+          
+      - name: Create AI accessibility analyzer
+        run: |
+          cat > ai_accessibility_analyzer.py << 'EOF'
+          import requests
+          import json
+          import sys
+          from bs4 import BeautifulSoup
+          import re
+            def call_ollama(prompt, model="tinyllama"):
+              """Call Ollama API with the tiny model"""
+              try:
+                  response = requests.post("http://localhost:11434/api/generate", 
+                      json={
+                          "model": model,
+                          "prompt": prompt,
+                          "stream": False,
+                          "options": {
+                              "temperature": 0.1,
+                              "top_p": 0.9,
+                              "num_predict": 500
+                          }
+                      },
+                      timeout=60
+                  )
+                  return response.json().get("response", "")
+              except Exception as e:
+                  return f"Error calling model: {str(e)}"
+          
+          def extract_text_content(html_file):
+              """Extract relevant content from HTML for analysis"""
+              try:
+                  with open(html_file, 'r', encoding='utf-8') as f:
+                      soup = BeautifulSoup(f.read(), 'html.parser')
+                  
+                  # Extract key elements for accessibility analysis
+                  analysis_content = {
+                      "title": soup.title.string if soup.title else "No title",
+                      "lang": soup.html.get('lang') if soup.html else None,
+                      "images": [],
+                      "forms": [],
+                      "headings": [],
+                      "links": [],
+                      "tables": []
+                  }
+                  
+                  # Extract images and alt text
+                  for img in soup.find_all('img'):
+                      analysis_content["images"].append({
+                          "src": img.get('src', ''),
+                          "alt": img.get('alt', ''),
+                          "has_alt": img.has_attr('alt')
+                      })
+                  
+                  # Extract form elements
+                  for input_elem in soup.find_all(['input', 'select', 'textarea']):
+                      label = None
+                      if input_elem.get('id'):
+                          label_elem = soup.find('label', {'for': input_elem.get('id')})
+                          if label_elem:
+                              label = label_elem.get_text(strip=True)
+                      
+                      analysis_content["forms"].append({
+                          "type": input_elem.get('type', input_elem.name),
+                          "id": input_elem.get('id', ''),
+                          "label": label,
+                          "has_label": label is not None
+                      })
+                  
+                  # Extract headings
+                  for heading in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
+                      analysis_content["headings"].append({
+                          "tag": heading.name,
+                          "text": heading.get_text(strip=True)[:50]
+                      })
+                  
+                  # Extract links
+                  for link in soup.find_all('a'):
+                      analysis_content["links"].append({
+                          "href": link.get('href', ''),
+                          "text": link.get_text(strip=True)[:30],
+                          "title": link.get('title', '')
+                      })
+                  
+                  # Extract tables
+                  for table in soup.find_all('table'):
+                      headers = [th.get_text(strip=True) for th in table.find_all('th')]
+                      analysis_content["tables"].append({
+                          "has_headers": len(headers) > 0,
+                          "headers": headers[:3]  # First 3 headers only
+                      })
+                  
+                  return analysis_content
+              except Exception as e:
+                  return {"error": f"Failed to parse HTML: {str(e)}"}
+          
+          def analyze_accessibility(html_file):
+              """Use tiny LLM to analyze accessibility issues"""
+              content = extract_text_content(html_file)
+              
+              if "error" in content:
+                  return content
+              
+              # Create a focused prompt for the tiny model
+              prompt = f"""Analyze this HTML content for accessibility issues. Be very brief and specific.
+          
+          Content summary:
+          - Title: {content['title']}
+          - Language declared: {'Yes' if content['lang'] else 'No'}
+          - Images: {len(content['images'])} total
+          - Images without alt text: {sum(1 for img in content['images'] if not img['has_alt'])}
+          - Form inputs: {len(content['forms'])} total
+          - Form inputs without labels: {sum(1 for form in content['forms'] if not form['has_label'])}
+          - Headings: {[h['tag'] for h in content['headings']]}
+          - Links with generic text: {sum(1 for link in content['links'] if link['text'].lower() in ['click here', 'read more', 'more'])}
+          - Tables without headers: {sum(1 for table in content['tables'] if not table['has_headers'])}
+          
+          List the top 3 accessibility issues found. Format as:
+          1. Issue name - Description
+          2. Issue name - Description  
+          3. Issue name - Description
+          
+          If no major issues, say "No critical accessibility issues found."
+          """
+              
+              response = call_ollama(prompt)
+              
+              return {
+                  "file": html_file,
+                  "analysis": response,
+                  "stats": {
+                      "images_without_alt": sum(1 for img in content['images'] if not img['has_alt']),
+                      "forms_without_labels": sum(1 for form in content['forms'] if not form['has_label']),
+                      "heading_hierarchy": [h['tag'] for h in content['headings']],
+                      "has_lang_attr": content['lang'] is not None,
+                      "tables_without_headers": sum(1 for table in content['tables'] if not table['has_headers'])
+                  }
+              }
+          
+          def main():
+              if len(sys.argv) < 2:
+                  print("Usage: python ai_accessibility_analyzer.py <html_file1> [html_file2] ...")
+                  sys.exit(1)
+              
+              results = []
+              for html_file in sys.argv[1:]:
+                  print(f"Analyzing {html_file}...")
+                  result = analyze_accessibility(html_file)
+                  results.append(result)
+              
+              # Save results as JSON
+              with open('ai_accessibility_results.json', 'w') as f:
+                  json.dump(results, f, indent=2)
+              
+              # Create markdown report
+              with open('ai_accessibility_report.md', 'w') as f:
+                  f.write("# AI-Powered Accessibility Analysis Report\n\n")
+                  f.write("*Generated using TinyLlama (1.1B parameters) - A very small but capable language model*\n\n")
+                  
+                  for result in results:
+                      f.write(f"## Analysis of `{result['file']}`\n\n")
+                      
+                      if "error" in result:
+                          f.write(f"**Error:** {result['error']}\n\n")
+                          continue
+                      
+                      # Write statistics
+                      f.write("### Quick Stats\n")
+                      stats = result['stats']
+                      f.write(f"- Images without alt text: {stats['images_without_alt']}\n")
+                      f.write(f"- Forms without labels: {stats['forms_without_labels']}\n")
+                      f.write(f"- Language attribute present: {'Yes' if stats['has_lang_attr'] else 'No'}\n")
+                      f.write(f"- Tables without headers: {stats['tables_without_headers']}\n")
+                      f.write(f"- Heading structure: {' → '.join(stats['heading_hierarchy'])}\n\n")
+                      
+                      # Write AI analysis
+                      f.write("### AI Analysis\n")
+                      f.write(f"{result['analysis']}\n\n")
+                      f.write("---\n\n")
+                  
+                  f.write("## About This Analysis\n\n")
+                  f.write("This report was generated using **TinyLlama**, a compact 1.1B parameter language model ")
+                  f.write("that runs locally in GitHub Actions. While small, it can identify common accessibility ")
+                  f.write("patterns and issues effectively.\n\n")
+                  f.write("**Note:** This AI analysis supplements, but doesn't replace, dedicated accessibility ")
+                  f.write("testing tools like axe-core or Pa11y. Always validate findings with specialized tools ")
+                  f.write("and manual testing.\n")
+              
+              print("Analysis complete! Generated:")
+              print("- ai_accessibility_results.json")
+              print("- ai_accessibility_report.md")
+          
+          if __name__ == "__main__":
+              main()
+          EOF
+
+      - name: Wait for Ollama to be ready
+        run: |
+          echo "Waiting for Ollama to be ready..."
+          for i in {1..30}; do
+            if curl -s http://localhost:11434/api/tags >/dev/null 2>&1; then
+              echo "Ollama is ready!"
+              break
+            fi
+            echo "Attempt $i/30: Ollama not ready yet, waiting..."
+            sleep 5
+          done
+
+      - name: Analyze accessibility issues with AI
+        run: |
+          python ai_accessibility_analyzer.py accessibility-issues-demo.html accessibility-fixed-demo.html
+
+      - name: Display AI analysis results
+        run: |
+          echo "=== AI Accessibility Analysis Results ==="
+          if [ -f ai_accessibility_report.md ]; then
+            cat ai_accessibility_report.md
+          else
+            echo "No report generated"
+          fi
+
+      - name: Upload AI analysis results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ai-accessibility-analysis
+          path: |
+            ai_accessibility_results.json
+            ai_accessibility_report.md
+
+      - name: Comment on PR with AI analysis
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let report = '';
+            
+            try {
+              report = fs.readFileSync('ai_accessibility_report.md', 'utf8');
+            } catch (e) {
+              report = 'AI accessibility analysis failed to generate report.';
+            }
+            
+            const comment = `## 🤖 AI-Powered Accessibility Analysis
+            
+            *Analyzed using TinyLlama (1.1B parameters) - running locally in GitHub Actions*
+            
+            <details>
+            <summary>Click to view AI accessibility analysis</summary>
+            
+            ${report}
+            
+            </details>
+            
+            **Note:** This AI analysis is experimental and should be used alongside dedicated accessibility testing tools like axe-core and Pa11y.`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

@@ -75,6 +75,18 @@ This project includes **two automated testing workflows** that run on every push
 - Provides CLI-focused reports ideal for developers
 - Automatically comments on pull requests with collapsible results
 
+#### 🤖 AI-Powered Accessibility Analysis
+**Location:** `.github/workflows/ai_accessibility_check.yml`
+
+- **Novel approach**: Uses TinyLlama (1.1B parameter) language model running locally in GitHub Actions
+- Analyzes HTML structure for accessibility patterns and issues
+- Generates human-readable insights alongside technical statistics
+- Very lightweight: ~1.4GB model download, minimal compute usage
+- Provides experimental AI perspective on accessibility compliance
+- Supplements (doesn't replace) dedicated testing tools like axe-core and Pa11y
+
+**Why TinyLlama?** Despite being only 1.1B parameters, TinyLlama can identify common accessibility patterns like missing alt text, unlabeled forms, and heading hierarchy issues while running efficiently in CI environments.
+
 **Expected Results:**
 - Issues demo: Multiple violations (expected behavior)
 - Fixed demo: Zero or minimal violations
