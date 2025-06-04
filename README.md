@@ -56,7 +56,7 @@ This project covers **13+ common accessibility issues** that developers encounte
 
 ### 📊 Continuous Integration Testing
 
-This project includes **two automated testing workflows** that run on every push and pull request:
+This project includes **three automated testing workflows** that run on every push and pull request:
 
 #### GitHub Actions Workflow (axe-core)
 **Location:** `.github/workflows/accessibility-check.yml`
@@ -78,14 +78,28 @@ This project includes **two automated testing workflows** that run on every push
 #### 🤖 AI-Powered Accessibility Analysis
 **Location:** `.github/workflows/ai_accessibility_check.yml`
 
-- **Novel approach**: Uses TinyLlama (1.1B parameter) language model running locally in GitHub Actions
-- Analyzes HTML structure for accessibility patterns and issues
-- Generates human-readable insights alongside technical statistics
-- Very lightweight: ~1.4GB model download, minimal compute usage
-- Provides experimental AI perspective on accessibility compliance
+- **Simplified approach**: Uses TinyLlama (1.1B parameter) language model running locally in GitHub Actions
+- Directly analyzes raw HTML content with natural language prompts
+- Generates human-readable accessibility insights and recommendations
+- Very lightweight: ~1.4GB model download, minimal dependencies (only `requests`)
+- Provides experimental AI perspective on common accessibility issues
 - Supplements (doesn't replace) dedicated testing tools like axe-core and Pa11y
 
-**Why TinyLlama?** Despite being only 1.1B parameters, TinyLlama can identify common accessibility patterns like missing alt text, unlabeled forms, and heading hierarchy issues while running efficiently in CI environments.
+**What it checks for:**
+- Missing alt attributes on images
+- Forms without proper labels
+- Missing or incorrect heading structure
+- Potential color contrast issues
+- Missing language attributes
+
+**Why TinyLlama?** Despite being only 1.1B parameters, TinyLlama can effectively identify common accessibility patterns and explain issues in natural language while running efficiently in CI environments.
+
+**How it works:**
+1. Installs Ollama and pulls TinyLlama model
+2. Creates a simple Python analyzer script
+3. Reads HTML files and sends content to AI with accessibility prompt
+4. Generates both JSON data and markdown reports
+5. Comments on pull requests with AI findings
 
 **Expected Results:**
 - Issues demo: Multiple violations (expected behavior)
@@ -105,6 +119,25 @@ npx axe http://localhost:3000/accessibility-issues-demo.html --reporter json
 npm install -g pa11y-ci
 python -m http.server 8080
 pa11y http://localhost:8080/accessibility-issues-demo.html --standard WCAG2AA --runner axe
+```
+
+**AI accessibility testing (requires Ollama):**
+```bash
+# Install Ollama from https://ollama.com/
+curl -fsSL https://ollama.com/install.sh | sh   # Linux/macOS
+# Or download from website for Windows
+
+# Pull TinyLlama model
+ollama pull tinyllama
+
+# Start Ollama service (if not auto-started)
+ollama serve
+
+# Install Python requests
+pip install requests
+
+# Run the AI analyzer (extract from workflow or create simple script)
+python ai_accessibility_analyzer.py
 ```
 
 ## 📋 WCAG 2.1 Compliance Reference
@@ -178,7 +211,8 @@ create a simple html file to showcase how to fix accessibility issues. make the 
 - Two complete HTML files (broken and fixed versions)
 - 13+ realistic accessibility violations and their solutions
 - Comprehensive documentation with WCAG mapping
-- Automated testing workflows
+- Three automated testing workflows (axe-core, Pa11y, and AI-powered analysis)
+- AI accessibility checker using TinyLlama for experimental insights
 - Learning guidance and best practices
 
 **Why It Worked:** The prompt was specific about the educational goal, requested both problems and solutions, and specified the technology constraint (plain HTML).

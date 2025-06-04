@@ -106,16 +106,15 @@ jobs:
               # Save results
               with open('ai_accessibility_results.json', 'w') as f:
                   json.dump(results, f, indent=2)
-              
-              # Create simple markdown report
+                # Create simple markdown report
               with open('ai_accessibility_report.md', 'w') as f:
-                  f.write("# AI Accessibility Analysis\\n\\n")
-                  f.write("*Analysis performed by TinyLlama*\\n\\n")
+                  f.write("# AI Accessibility Analysis\n\n")
+                  f.write("*Analysis performed by TinyLlama*\n\n")
                   
                   for result in results:
-                      f.write(f"## {result['file']}\\n\\n")
-                      f.write(f"{result['analysis']}\\n\\n")
-                      f.write("---\\n\\n")
+                      f.write(f"## {result['file']}\n\n")
+                      f.write(f"{result['analysis']}\n\n")
+                      f.write("---\n\n")
               
               print("Analysis complete!")
           
