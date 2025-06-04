@@ -1,4 +1,4 @@
-# Accessibility Issues Demo - Learning Guide
+# Accessibility Issues Demo - Learning Guide 
 
 ![image](image.png)
 This project demonstrates common web accessibility issues and their solutions through two HTML files: one with deliberate accessibility problems and another showing how to fix them. Perfect for developers learning accessibility best practices.
