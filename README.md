@@ -308,8 +308,19 @@ pa11y http://localhost:8080/accessibility-fixed-demo.html --standard WCAG2AA --r
 - **Industry standard**: Widely adopted tool in the accessibility community
 - **Complementary testing**: Works alongside other tools like axe-core for comprehensive coverage
 
-#### Local Testing Commands:
-If you want to run the same tests locally:
+#### Local Testing Commands (axe-core):
+If you want to run the same axe-core tests locally:
+
+```bash
+# Install dependencies
+npm install --save-dev @axe-core/cli puppeteer serve
+
+# Start local server
+npx serve . -l 3000 &
+
+# Run accessibility tests
+npx axe http://localhost:3000/accessibility-issues-demo.html --reporter json
+npx axe http://localhost:3000/accessibility-fixed-demo.html --reporter json
 ```
 
 ## WCAG 2.1 Compliance Levels
