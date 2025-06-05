@@ -96,18 +96,17 @@ jobs:
                       "file": filename,
                       "analysis": f"Error reading file: {str(e)}"
                   }
-          
-          def main():
+            def main():
               results = []
               
-              # Analyze both HTML files
-              for filename in ["accessibility-issues-demo.html", "accessibility-fixed-demo.html"]:
-                  if os.path.exists(filename):
-                      print(f"Analyzing {filename}...")
-                      result = analyze_html_file(filename)
-                      results.append(result)
-                  else:
-                      print(f"File {filename} not found, skipping...")
+              # Analyze only the file with accessibility issues
+              filename = "accessibility-issues-demo.html"
+              if os.path.exists(filename):
+                  print(f"Analyzing {filename}...")
+                  result = analyze_html_file(filename)
+                  results.append(result)
+              else:
+                  print(f"File {filename} not found, skipping...")
               
               # Save results
               with open('ai_accessibility_results.json', 'w') as f:
