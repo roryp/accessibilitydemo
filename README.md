@@ -79,6 +79,8 @@ This project includes **three automated testing workflows** that run on every pu
 #### 🤖 AI-Powered Accessibility Analysis
 **Location:** `.github/workflows/ai_accessibility_check.yml`
 
+![aiflow](aiflow.png)
+
 - **Simplified approach**: Uses TinyLlama (1.1B parameter) language model running locally in GitHub Actions
 - Directly analyzes raw HTML content with natural language prompts
 - Generates human-readable accessibility insights and recommendations
