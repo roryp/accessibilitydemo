@@ -85,7 +85,8 @@ jobs:
           {html_content[:2000]}...
           
           List the main accessibility issues you find:"""
-                    ai_response = call_ollama(prompt)
+                  
+                  ai_response = call_ollama(prompt)
                   return {
                       "file": filename,
                       "analysis": ai_response
@@ -95,23 +96,23 @@ jobs:
                       "file": filename,
                       "analysis": f"Error reading file: {str(e)}"
                   }
-            def main():
+          
+          def main():
               results = []
               
-              # Analyze only the file with accessibility issues
-              filename = "accessibility-issues-demo.html"
-              if os.path.exists(filename):
-                  print(f"Analyzing {filename}...")
-                  result = analyze_html_file(filename)
-                  results.append(result)
-              else:
-                  print(f"File {filename} not found, skipping...")
+              # Analyze both HTML files
+              for filename in ["accessibility-issues-demo.html", "accessibility-fixed-demo.html"]:
+                  if os.path.exists(filename):
+                      print(f"Analyzing {filename}...")
+                      result = analyze_html_file(filename)
+                      results.append(result)
+                  else:
+                      print(f"File {filename} not found, skipping...")
               
               # Save results
               with open('ai_accessibility_results.json', 'w') as f:
                   json.dump(results, f, indent=2)
-              
-              # Create simple markdown report
+                # Create simple markdown report
               with open('ai_accessibility_report.md', 'w') as f:
                   f.write("# AI Accessibility Analysis\n\n")
                   f.write("*Analysis performed by TinyLlama*\n\n")
