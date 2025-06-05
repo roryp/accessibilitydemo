@@ -85,8 +85,8 @@ jobs:
           {html_content[:2000]}...
           
           List the main accessibility issues you find:"""
-                  
-                  ai_response = call_ollama(prompt)                  return {
+                    ai_response = call_ollama(prompt)
+                  return {
                       "file": filename,
                       "analysis": ai_response
                   }
