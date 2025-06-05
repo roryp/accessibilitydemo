@@ -86,8 +86,7 @@ jobs:
           
           List the main accessibility issues you find:"""
                   
-                  ai_response = call_ollama(prompt)
-                  return {
+                  ai_response = call_ollama(prompt)                  return {
                       "file": filename,
                       "analysis": ai_response
                   }
@@ -111,7 +110,8 @@ jobs:
               # Save results
               with open('ai_accessibility_results.json', 'w') as f:
                   json.dump(results, f, indent=2)
-                # Create simple markdown report
+              
+              # Create simple markdown report
               with open('ai_accessibility_report.md', 'w') as f:
                   f.write("# AI Accessibility Analysis\n\n")
                   f.write("*Analysis performed by TinyLlama*\n\n")
