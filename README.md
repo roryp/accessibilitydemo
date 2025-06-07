@@ -81,21 +81,28 @@ This project includes **three automated testing workflows** that run on every pu
 
 ![aiflow](aiflow.png)
 
-- **Simplified approach**: Uses TinyLlama (1.1B parameter) language model running locally in GitHub Actions
-- Directly analyzes raw HTML content with natural language prompts
-- Generates human-readable accessibility insights and recommendations
-- Very lightweight: ~1.4GB model download, minimal dependencies (only `requests`)
-- Provides experimental AI perspective on common accessibility issues
+- **Advanced AI Analysis**: Uses GPT-4o via GitHub Models for comprehensive accessibility analysis
+- Analyzes HTML content with sophisticated understanding of WCAG 2.1 AA guidelines
+- Generates detailed, human-readable insights and actionable recommendations
+- Provides expert-level accessibility consultation in natural language
 - Supplements (doesn't replace) dedicated testing tools like axe-core and Pa11y
 
-**What it checks for:**
-- Missing alt attributes on images
-- Forms without proper labels
-- Missing or incorrect heading structure
-- Potential color contrast issues
-- Missing language attributes
+**Setup Required:**
+1. Get a GitHub Models API token from [GitHub Models](https://github.com/marketplace/models)
+2. Add it as a repository secret named `MODELS_TOKEN`
+3. See `.github/workflows/README.md` for detailed setup instructions
 
-**Why TinyLlama?** Despite being only 1.1B parameters, TinyLlama can effectively identify common accessibility patterns and explain issues in natural language while running efficiently in CI environments.
+**What it analyzes:**
+- Semantic HTML structure and heading hierarchy
+- Images and media accessibility (alt text quality)
+- Forms and interactive elements
+- Keyboard navigation patterns
+- Color and contrast compliance
+- ARIA implementation
+- Document structure and language attributes
+- Dynamic content and live regions
+
+**Why GPT-4o?** GPT-4o provides expert-level accessibility analysis with deep understanding of accessibility principles, user impact, and detailed remediation guidance.
 
 **How it works:**
 1. Installs Ollama and pulls TinyLlama model
@@ -230,3 +237,108 @@ Generate a complete accessibility testing playground for developers
 ---
 
 **Remember:** Accessibility benefits everyone, not just users with disabilities. It improves SEO, usability, mobile experience, and creates a better web for all users.
+
+## 🤖 AI-Powered Accessibility Analysis with GitHub Models
+
+This project includes an advanced AI accessibility checker powered by **GPT-4o via GitHub Models**. The AI performs comprehensive accessibility audits that go beyond traditional automated tools, providing contextual insights and detailed remediation guidance.
+
+### Features
+- **Advanced Analysis**: GPT-4o analyzes HTML for WCAG 2.1 AA compliance
+- **Contextual Insights**: Understands semantic meaning and user intent
+- **Detailed Remediation**: Provides specific code fixes with before/after examples
+- **Severity Assessment**: Categorizes issues by impact (Critical/High/Medium/Low)
+- **WCAG Mapping**: References specific WCAG guidelines for each issue
+- **User Impact Analysis**: Explains how issues affect users with disabilities
+
+### Setup Instructions
+
+#### 1. Enable GitHub Models (Required)
+GitHub Models is currently in beta. To access it:
+
+1. **Join the GitHub Models Beta**:
+   - Visit [GitHub Models](https://github.com/marketplace/models)
+   - Request access to the beta program
+   - Wait for approval (usually 1-2 business days)
+
+2. **Verify Access**:
+   - Once approved, you'll see GitHub Models in your GitHub account
+   - You can test it at https://github.com/marketplace/models
+
+#### 2. Configure Repository Secrets
+You need to create a custom secret for GitHub Models access:
+
+1. **Get Your GitHub Personal Access Token**:
+   - Go to GitHub Settings → Developer settings → Personal access tokens → Fine-grained tokens
+   - Create a new token with `Models` scope enabled
+   - Copy the token value
+
+2. **Add Repository Secret**:
+   - Navigate to your repository on GitHub
+   - Click **Settings** → **Secrets and variables** → **Actions**
+   - Click **New repository secret**
+   - Name: `GITHUB_MODELS_TOKEN`
+   - Value: Paste your GitHub personal access token
+   - Click **Add secret**
+
+3. **Verify Setup**:
+   - The token should appear in your repository secrets list
+   - The workflow will use this token to authenticate with GitHub Models
+
+#### 3. Test the Integration
+
+The AI accessibility checker runs automatically on:
+- **Push to main/master branch**
+- **Pull requests**
+- **Manual workflow dispatch**
+
+To manually trigger:
+1. Go to **Actions** tab in your repository
+2. Select **AI Accessibility Check** workflow
+3. Click **Run workflow**
+
+### How It Works
+
+```mermaid
+graph LR
+    A[HTML Files] --> B[GitHub Actions]
+    B --> C[GPT-4o via GitHub Models]
+    C --> D[AI Analysis]
+    D --> E[Accessibility Report]
+    E --> F[PR Comment]
+```
+
+1. **Automated Trigger**: Workflow runs on code changes
+2. **AI Analysis**: GPT-4o analyzes HTML files for accessibility issues
+3. **Detailed Report**: Generates comprehensive report with remediation steps
+4. **Integration**: Comments results on pull requests automatically
+
+### Sample AI Analysis Output
+
+The AI provides detailed insights like:
+
+```markdown
+## Accessibility Issue: Missing Alt Text
+- **Severity**: High
+- **WCAG Guideline**: 1.1.1 Non-text Content
+- **Issue**: <img src="logo.png"> lacks alternative text
+- **Remediation**: Add descriptive alt attribute: <img src="logo.png" alt="Company Logo">
+- **User Impact**: Screen reader users cannot understand image content
+```
+
+### Cost and Limits
+- **GitHub Models Beta**: Free during beta period
+- **Rate Limits**: Standard GitHub API rate limits apply
+- **Model**: GPT-4o (fast, high-quality analysis)
+
+### Troubleshooting
+
+**Issue**: "GitHub Models access denied"
+- **Solution**: Ensure you've been approved for GitHub Models beta
+
+**Issue**: "API rate limit exceeded"
+- **Solution**: Wait a few minutes and retry, or reduce analysis frequency
+
+**Issue**: "No analysis generated"
+- **Solution**: Check workflow logs for API errors or connectivity issues
+
+---
