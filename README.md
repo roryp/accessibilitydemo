@@ -309,7 +309,7 @@ graph LR
 3. **Detailed Report**: Generates comprehensive report with remediation steps
 4. **Integration**: Comments results on pull requests automatically
 
-### Sample AI Analysis Output
+## Sample AI Analysis Output
 
 The AI provides detailed insights like:
 
