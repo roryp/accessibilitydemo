@@ -26,7 +26,6 @@ This workflow uses GitHub Models API to perform AI-powered accessibility analysi
 
 - Analyzes HTML files for accessibility issues using GPT-4o
 - Generates detailed reports with WCAG 2.1 AA compliance insights
-- Creates PR comments with accessibility analysis
 - Uploads analysis results as artifacts
 
 ### Troubleshooting

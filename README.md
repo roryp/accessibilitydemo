@@ -377,7 +377,6 @@ graph LR
     B --> C[GPT-4o via GitHub Models]
     C --> D[AI Analysis]
     D --> E[Accessibility Report]
-    E --> F[PR Comment]
 ```
 
 1. **Automated Trigger**: Workflow runs on code changes

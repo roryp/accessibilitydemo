@@ -109,17 +109,6 @@ GHA -> GHA: Display analysis results in log
 GHA -> GHA: Upload artifacts\n(actions/upload-artifact@v4)
 note over GHA: Artifacts uploaded:\n• ai_accessibility_results.json\n• ai_accessibility_report.md
 
-== PR Comment Phase ==
-alt Is Pull Request
-    GHA -> FS: Read ai_accessibility_report.md
-    FS --> GHA: Return report content
-    
-    note over GHA: Format PR comment including:\n• AI analysis badge\n• Collapsible detailed report\n• GitHub Models attribution\n• Best practices notes
-    
-    GHA -> PR: Post comment\n(actions/github-script@v7)
-    PR --> Dev: Notify of analysis results
-end
-
 == Completion Phase ==
 GHA --> GH: Workflow complete
 GH --> Dev: Notify of workflow completion
@@ -168,7 +157,6 @@ note over Dev: Developer can now:\n1. Review detailed analysis\n2. Download arti
 - **JSON Results**: Machine-readable structured data
 - **Markdown Report**: Human-readable formatted analysis
 - **GitHub Artifacts**: Persistent storage of results
-- **PR Comments**: Contextual feedback in pull requests
 
 ### 6. Error Handling
 - **API Timeouts**: 60-second timeout for stability
@@ -198,7 +186,6 @@ note over Dev: Developer can now:\n1. Review detailed analysis\n2. Download arti
 
 ### For Developers
 1. **Push Code**: Automatic analysis on push/PR
-2. **Review Results**: Check PR comments or workflow logs
 3. **Download Reports**: Access detailed artifacts
 4. **Fix Issues**: Implement recommended changes
 5. **Iterate**: Re-run analysis after fixes
