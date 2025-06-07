@@ -81,6 +81,8 @@ This project includes **three automated testing workflows** that run on every pu
 
 ![aiflow](aiflow.png)
 
+📊 **[View Detailed Sequence Diagram](sequence_diagram.md)** - Complete workflow visualization created with PlantUML
+
 - **Advanced AI Analysis**: Uses GPT-4o via GitHub Models for comprehensive accessibility analysis
 - Analyzes HTML content with sophisticated understanding of WCAG 2.1 AA guidelines
 - Generates detailed, human-readable insights and actionable recommendations
