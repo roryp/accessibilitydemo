@@ -79,8 +79,6 @@ This project includes **three automated testing workflows** that run on every pu
 #### 🤖 AI-Powered Accessibility Analysis
 **Location:** `.github/workflows/ai_accessibility_check.yml`
 
-![aiflow](aiflow.png)
-
 📊 **[View Detailed Sequence Diagram](sequence_diagram.md)** - Complete workflow visualization created with PlantUML
 
 - **Advanced AI Analysis**: Uses GPT-4.1 via GitHub Models for comprehensive accessibility analysis
