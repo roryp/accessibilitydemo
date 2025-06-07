@@ -57,7 +57,7 @@ sequenceDiagram
             Note over Analyzer: Prompt includes:<br/>- WCAG 2.1 AA guidelines<br/>- 8 critical areas analysis<br/>- Structured response format
             
             Analyzer->>API: POST /chat/completions
-            Note over API: GitHub Models API<br/>Model: GPT-4.1<br/>Temperature: 0.1<br/>Max Tokens: 2000
+            Note over API: GitHub Models API<br/>Model: GPT-4.1<br/>Temperature: 0.1<br/>Max Tokens: 8000
             
             API-->>Analyzer: AI Analysis Response
             
@@ -182,7 +182,7 @@ alt Token Available (Real Analysis)
         
         note over Analyzer: Build comprehensive prompt including:\n• WCAG 2.1 AA guidelines\n• 8 critical areas analysis\n• Structured response format
         
-        Analyzer -> API: POST /chat/completions\n{\n  "model": "gpt-4.1",\n  "temperature": 0.1,\n  "max_tokens": 2000\n}
+        Analyzer -> API: POST /chat/completions\n{\n  "model": "gpt-4.1",\n  "temperature": 0.1,\n  "max_tokens": 8000\n}
         
         note over API: GitHub Models API\nAnalyzing accessibility with GPT-4.1
         
@@ -305,7 +305,7 @@ note over Dev: Developer can now:\n1. Review detailed analysis\n2. Download arti
 ### GitHub Models API Integration
 - Model: GPT-4.1 for advanced reasoning
 - Temperature: 0.1 for consistent, focused analysis
-- Max Tokens: 2000 for comprehensive responses
+- Max Tokens: 8000 for comprehensive responses
 - Authentication: Bearer token via environment variable
 
 ### File System Integration
