@@ -83,7 +83,7 @@ This project includes **three automated testing workflows** that run on every pu
 
 📊 **[View Detailed Sequence Diagram](sequence_diagram.md)** - Complete workflow visualization created with PlantUML
 
-- **Advanced AI Analysis**: Uses GPT-4o via GitHub Models for comprehensive accessibility analysis
+- **Advanced AI Analysis**: Uses GPT-4.1 via GitHub Models for comprehensive accessibility analysis
 - Analyzes HTML content with sophisticated understanding of WCAG 2.1 AA guidelines
 - Generates detailed, human-readable insights and actionable recommendations
 - Provides expert-level accessibility consultation in natural language
@@ -104,14 +104,14 @@ This project includes **three automated testing workflows** that run on every pu
 - Document structure and language attributes
 - Dynamic content and live regions
 
-**Why GPT-4o?** GPT-4o provides expert-level accessibility analysis with deep understanding of accessibility principles, user impact, and detailed remediation guidance.
+**Why GPT-4.1?** GPT-4.1 provides expert-level accessibility analysis with deep understanding of accessibility principles, user impact, and detailed remediation guidance.
 
 **How it works:**
-1. Installs Ollama and pulls TinyLlama model
-2. Creates a simple Python analyzer script
-3. Reads HTML files and sends content to AI with accessibility prompt
-4. Generates both JSON data and markdown reports
-5. Comments on pull requests with AI findings
+1. Reads HTML files and sends content to GPT-4.1 via GitHub Models API
+2. AI performs comprehensive WCAG 2.1 AA compliance analysis with enhanced reasoning
+3. Generates both JSON data and detailed markdown reports
+4. Comments on pull requests with AI findings and recommendations
+5. Provides severity-based prioritization for remediation
 
 **Expected Results:**
 - Issues demo: Multiple violations (expected behavior)
@@ -133,20 +133,17 @@ python -m http.server 8080
 pa11y http://localhost:8080/accessibility-issues-demo.html --standard WCAG2AA --runner axe
 ```
 
-**AI accessibility testing (requires Ollama):**
+**AI accessibility testing:**
 ```bash
-# Install Ollama from https://ollama.com/
-curl -fsSL https://ollama.com/install.sh | sh   # Linux/macOS
-# Or download from website for Windows
-
-# Pull TinyLlama model
-ollama pull tinyllama
-
-# Start Ollama service (if not auto-started)
-ollama serve
-
-# Install Python requests
+# Install Python dependencies
 pip install requests
+
+# Set your GitHub Models token
+export MODELS_TOKEN=your_github_models_token
+
+# Run the AI analyzer
+python ai_accessibility_analyzer.py
+```
 
 # Run the AI analyzer (extract from workflow or create simple script)
 python ai_accessibility_analyzer.py
@@ -224,7 +221,7 @@ create a simple html file to showcase how to fix accessibility issues. make the 
 - 13+ realistic accessibility violations and their solutions
 - Comprehensive documentation with WCAG mapping
 - Three automated testing workflows (axe-core, Pa11y, and AI-powered analysis)
-- AI accessibility checker using TinyLlama for experimental insights
+- AI accessibility checker using GPT-4.1 for advanced insights
 - Learning guidance and best practices
 
 **Why It Worked:** The prompt was specific about the educational goal, requested both problems and solutions, and specified the technology constraint (plain HTML).
@@ -255,19 +252,19 @@ This project includes an advanced AI accessibility checker powered by **GPT-4o v
 ### Setup Instructions
 
 #### 1. Enable GitHub Models (Required)
-GitHub Models is currently in beta. To access it:
+GitHub Models provides access to cutting-edge AI models including GPT-4.1:
 
-1. **Join the GitHub Models Beta**:
+1. **Access GitHub Models**:
    - Visit [GitHub Models](https://github.com/marketplace/models)
-   - Request access to the beta program
-   - Wait for approval (usually 1-2 business days)
+   - Sign in with your GitHub account
+   - Access is now generally available for GitHub users
 
 2. **Verify Access**:
-   - Once approved, you'll see GitHub Models in your GitHub account
-   - You can test it at https://github.com/marketplace/models
+   - You can test models directly at https://github.com/marketplace/models
+   - GPT-4.1 should be available in the model list
 
 #### 2. Configure Repository Secrets
-You need to create a custom secret for GitHub Models access:
+You need to create a secret for GitHub Models access:
 
 1. **Get Your GitHub Personal Access Token**:
    - Go to GitHub Settings → Developer settings → Personal access tokens → Fine-grained tokens
@@ -278,7 +275,7 @@ You need to create a custom secret for GitHub Models access:
    - Navigate to your repository on GitHub
    - Click **Settings** → **Secrets and variables** → **Actions**
    - Click **New repository secret**
-   - Name: `GITHUB_MODELS_TOKEN`
+   - Name: `MODELS_TOKEN`
    - Value: Paste your GitHub personal access token
    - Click **Add secret**
 
