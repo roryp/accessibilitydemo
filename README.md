@@ -183,6 +183,82 @@ Make all form fields properly labeled and ensure semantic button elements.
 - Always test AI-generated solutions with accessibility tools
 - Validate with real users when possible
 
+## 📋 Using GitHub Copilot for Accessibility Issues
+
+GitHub Copilot's coding agent can help you systematically work through accessibility issues by creating and managing GitHub issues and pull requests. This workflow is perfect for tracking and fixing accessibility violations discovered by automated testing.
+
+### Creating Accessibility Issues with Copilot
+
+1. **Log accessibility findings as GitHub issues** using Copilot's coding agent:
+   ```
+   @github Create an issue for the missing alt text on images in accessibility-issues-demo.html
+   ```
+
+2. **Use specific accessibility prompts** for better issue creation:
+   ```
+   @github Create an issue titled "Fix WCAG 2.1 AA contrast violations" with details about the low-contrast text elements that fail accessibility standards
+   ```
+
+3. **Batch create issues** for multiple accessibility problems:
+   ```
+   @github Create separate issues for each accessibility violation found in the HTML files: missing labels, improper heading hierarchy, and non-semantic buttons
+   ```
+
+### Working on Accessibility Issues with Copilot
+
+Once you have accessibility issues logged, use [GitHub Copilot's coding agent](https://docs.github.com/en/enterprise-cloud@latest/copilot/using-github-copilot/coding-agent/using-copilot-to-work-on-an-issue) to systematically fix them:
+
+1. **Start working on an issue**:
+   ```
+   @github Start working on issue #123 about missing alt text
+   ```
+
+2. **Ask Copilot to analyze and fix specific accessibility problems**:
+   ```
+   @github Fix the color contrast issues in this file to meet WCAG 2.1 AA standards
+   ```
+
+3. **Request comprehensive accessibility improvements**:
+   ```
+   @github Review this HTML file for all accessibility violations and create a PR with fixes for heading hierarchy, form labels, and semantic elements
+   ```
+
+### Example Accessibility Workflow
+
+Here's a complete workflow for fixing accessibility issues:
+
+```bash
+# 1. Create an issue for accessibility violations
+@github Create an issue for "Improve keyboard navigation and focus management" 
+         including missing skip links and focus indicators
+
+# 2. Start working on the issue
+@github Start working on issue #456 about keyboard navigation
+
+# 3. Ask for specific fixes
+@github Add skip links, improve focus indicators, and ensure all interactive 
+        elements are keyboard accessible according to WCAG 2.1 AA guidelines
+
+# 4. Create a pull request with the changes
+@github Create a PR with the accessibility improvements for issue #456
+```
+
+#### Benefits of Using Copilot for Accessibility Work
+
+- **Systematic approach**: Track each accessibility issue separately
+- **Documentation**: Issues provide clear records of what was fixed and why
+- **Collaboration**: Team members can review and comment on accessibility improvements
+- **Learning**: Copilot explains accessibility principles while implementing fixes
+- **Quality assurance**: PR reviews ensure accessibility fixes meet standards
+
+#### Pro Tips for Accessibility Issues
+
+- **Be specific about WCAG guidelines**: Mention "WCAG 2.1 AA" in your prompts
+- **Request explanations**: Ask Copilot to explain why changes improve accessibility
+- **Test systematically**: Include testing steps in your issue descriptions
+- **Link related issues**: Connect accessibility issues to user experience improvements
+- **Use templates**: Create issue templates for common accessibility patterns
+
 ## 🚀 Extending This Project
 
 ### Additional Features You Could Add
