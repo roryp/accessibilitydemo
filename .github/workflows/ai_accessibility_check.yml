@@ -68,39 +68,3 @@ jobs:
           path: |
             ai_accessibility_results.json
             ai_accessibility_report.md
-
-      - name: Comment on PR with AI analysis
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            let report = '';
-            
-            try {
-              report = fs.readFileSync('ai_accessibility_report.md', 'utf8');
-            } catch (e) {
-              report = 'AI accessibility analysis failed to generate report.';
-            }
-            
-            const comment = `## 🤖 AI-Powered Accessibility Analysis
-            
-            *Analyzed using GPT-4o via GitHub Models - Advanced AI accessibility audit*
-            
-            <details>
-            <summary>🔍 Click to view detailed AI accessibility analysis</summary>
-            
-            ${report}
-            
-            </details>
-            
-            **💡 Note:** This AI analysis uses GPT-4o's advanced reasoning capabilities to provide comprehensive accessibility insights. It should be used alongside dedicated accessibility testing tools like axe-core and Pa11y for complete coverage.
-            
-            **🚀 Powered by GitHub Models** - Fast, reliable AI analysis integrated directly into your workflow.`;
-            
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: comment
-            });
