@@ -1,4 +1,4 @@
-name: Pa11y Accessibility Tests
+name: Pa11y Accessibility Tests 
 
 on:
   workflow_dispatch:  # Allow manual triggering
