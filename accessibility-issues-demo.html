@@ -1,46 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
-    <title>Accessibility Fixed Demo</title>
+    <title>Accessibility Issues Demo - What NOT to Do</title>
     <style>
         body {
             background-color: #00bbff;
-            color: #1a1a1a;
+            color: #ffffff;
             font-family: Arial, sans-serif;
-            font-size: 16px; /* Ensure minimum font size */
         }
         .container {
             margin: 20px;
         }
         .low-contrast {
             background-color: #f0f0f0;
-            color: #333333;
+            color: #ffffff;
             padding: 10px;
         }
         .small-text {
-            font-size: 16px; /* Increased for accessibility */
+            font-size: 8px;
         }
-        .button-like, button, .custom-dropdown {
-            background-color: #005fa3;
-            color: #fff;
+        .button-like {
+            background-color: red;
+            color: white;
             padding: 10px;
             cursor: pointer;
             display: inline-block;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .button-like:focus, button:focus, .custom-dropdown:focus {
-            outline: 3px solid #ffbf47;
-            outline-offset: 2px;
         }
         .hidden-label {
-            position: absolute;
-            left: -10000px;
-            top: auto;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
+            display: none;
         }
         table {
             border-collapse: collapse;
@@ -50,220 +37,122 @@
             border: 1px solid black;
             padding: 8px;
         }
-        .custom-dropdown-list {
-            display: none;
-            border: 1px solid #005fa3;
-            background: #fff;
-            color: #1a1a1a;
-            position: absolute;
-            z-index: 10;
-            min-width: 150px;
+        .blinking {
+            animation: blink 1s linear infinite;
         }
-        .custom-dropdown-list[aria-expanded="true"] {
-            display: block;
-        }
-        .custom-dropdown-option {
-            padding: 8px 12px;
-            cursor: pointer;
-        }
-        .custom-dropdown-option[aria-selected="true"], .custom-dropdown-option:focus {
-            background: #005fa3;
-            color: #fff;
-        }
-        .interactive-div {
-            background: #005fa3;
-            color: #fff;
-            padding: 10px;
-            margin: 10px;
-            border-radius: 4px;
-        }
-        .interactive-div:focus {
-            outline: 3px solid #ffbf47;
-            outline-offset: 2px;
-        }
-        /* Skip link styles */
-        .skip-link {
-            position: absolute;
-            left: -10000px;
-            top: auto;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            background: #ffbf47;
-            color: #1a1a1a;
-            z-index: 1000;
-        }
-        .skip-link:focus {
-            left: 10px;
-            top: 10px;
-            width: auto;
-            height: auto;
-            padding: 8px 16px;
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header>
-        <h1>Welcome to Our Website</h1>
-    </header>
-    <main id="main-content">
-        <div class="container">
-            <!-- Fixed heading hierarchy -->
-            <h2>Accessibility Fixed Demo</h2>
-
-            <!-- Improved color contrast -->
-            <section class="low-contrast" aria-label="Low Contrast Example">
-                <p>This text now has improved contrast and is easier to read.</p>
-            </section>
-
-            <!-- Images with proper alt text -->
-            <img src="important-chart.jpg" width="300" height="200" alt="Bar chart showing quarterly sales data">
-            <img src="decorative-icon.png" alt="" aria-hidden="true">
-
-            <!-- Form with proper labels and error handling -->
-            <form aria-labelledby="contact-form-heading">
-                <h2 id="contact-form-heading">Contact Form</h2>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required aria-required="true">
-                <br><br>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required aria-required="true">
-                <br><br>
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" placeholder="Phone number">
-                <br><br>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" placeholder="Your message here" required aria-required="true"></textarea>
-                <br><br>
-                <!-- Semantic button -->
-                <button type="submit">Submit</button>
-            </form>
-
-            <!-- Descriptive links -->
-            <p>For more information, <a href="info.html">read our information page</a> or <a href="details.html">view detailed accessibility guidelines</a>.</p>
-
-            <!-- Table with headers -->
-            <table aria-label="Product Inventory">
-                <thead>
-                    <tr>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Stock</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Widget A</td>
-                        <td>$19.99</td>
-                        <td>In Stock</td>
-                    </tr>
-                    <tr>
-                        <td>Widget B</td>
-                        <td>$29.99</td>
-                        <td>Out of Stock</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!-- Removed blinking content -->
-            <p><strong>🚨 URGENT:</strong> This text is now static and does not blink.</p>
-
-            <!-- Minimum font size -->
-            <p class="small-text">This text is now large enough to read comfortably and meets WCAG guidelines for minimum font size.</p>
-
-            <!-- Video with controls and no autoplay -->
-            <video width="320" height="240" controls loop aria-label="Background video. Transcript available below.">
-                <source src="background-video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <p><a href="#video-transcript">Skip to video transcript</a></p>
-            <div id="video-transcript" class="hidden-label">
-                <p>Transcript: [Provide a transcript of the video here for accessibility.]</p>
-            </div>
-
-            <!-- Accessible custom dropdown -->
-            <div>
-                <label for="country-dropdown">Select your country:</label>
-                <div id="country-dropdown" class="custom-dropdown" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="country-dropdown-label" onclick="toggleDropdown()" onkeydown="dropdownKeydown(event)">
-                    <span id="country-dropdown-label">Select Country ▼</span>
-                </div>
-                <div id="dropdown-list" class="custom-dropdown-list" role="listbox" aria-labelledby="country-dropdown-label">
-                    <div class="custom-dropdown-option" role="option" tabindex="-1" aria-selected="false" onclick="selectCountry('USA')" onkeydown="dropdownOptionKeydown(event, 'USA')">USA</div>
-                    <div class="custom-dropdown-option" role="option" tabindex="-1" aria-selected="false" onclick="selectCountry('Canada')" onkeydown="dropdownOptionKeydown(event, 'Canada')">Canada</div>
-                    <div class="custom-dropdown-option" role="option" tabindex="-1" aria-selected="false" onclick="selectCountry('Mexico')" onkeydown="dropdownOptionKeydown(event, 'Mexico')">Mexico</div>
-                </div>
-            </div>
-
-            <!-- Interactive div with role and focus indicator -->
-            <div class="interactive-div" tabindex="0" role="button" aria-pressed="false" onclick="doSomething()" onkeydown="interactiveDivKeydown(event)">
-                This div is now accessible and has proper focus management
-            </div>
-
+    <div class="container">
+        <!-- Issue 1: Missing main landmark and heading hierarchy -->
+        <div>
+            <h3>Welcome to Our Website</h3>
+            <h1>This heading order is wrong</h1>
         </div>
-    </main>
+
+        <!-- Issue 2: Poor color contrast -->
+        <div class="low-contrast">
+            <p>This text has very poor contrast and is hard to read!</p>
+        </div>
+
+        <!-- Issue 3: Images without alt text -->
+        <img src="important-chart.jpg" width="300" height="200">
+        <img src="decorative-icon.png" alt="A beautiful decorative image that adds no informational value but has unnecessary alt text">
+
+        <!-- Issue 4: Form without proper labels -->
+        <form>
+            <h2>Contact Form</h2>
+            <p>Name:</p>
+            <input type="text" placeholder="Enter your name">
+            
+            <p>Email:</p>
+            <input type="email">
+            
+            <label class="hidden-label" for="phone">Phone:</label>
+            <input type="tel" id="phone" placeholder="Phone number">
+            
+            <p>Message:</p>
+            <textarea placeholder="Your message here"></textarea>
+            
+            <!-- Issue 5: Non-semantic button -->
+            <div class="button-like" onclick="submitForm()">Submit</div>
+        </form>
+
+        <!-- Issue 6: Links without descriptive text -->
+        <p>For more information, <a href="info.html">click here</a> or <a href="details.html">read more</a></p>
+
+        <!-- Issue 7: Table without headers -->
+        <table>
+            <tr>
+                <td>Product</td>
+                <td>Price</td>
+                <td>Stock</td>
+            </tr>
+            <tr>
+                <td>Widget A</td>
+                <td>$19.99</td>
+                <td>In Stock</td>
+            </tr>
+            <tr>
+                <td>Widget B</td>
+                <td>$29.99</td>
+                <td>Out of Stock</td>
+            </tr>
+        </table>
+
+        <!-- Issue 8: Content that auto-updates/blinks -->
+        <p class="blinking">🚨 URGENT: This text blinks and can cause seizures! 🚨</p>
+
+        <!-- Issue 9: Tiny text -->
+        <p class="small-text">This text is way too small to read comfortably and violates WCAG guidelines for minimum font size.</p>
+
+        <!-- Issue 10: Missing language attribute and page structure -->
+        <!-- Issue 11: Auto-playing content -->
+        <video width="320" height="240" autoplay loop>
+            <source src="background-video.mp4" type="video/mp4">
+        </video>
+
+        <!-- Issue 12: Inaccessible custom dropdown -->
+        <div>
+            <p>Select your country:</p>
+            <div onclick="toggleDropdown()" style="border: 1px solid black; padding: 5px; cursor: pointer;">
+                Select Country ▼
+            </div>
+            <div id="dropdown" style="display: none; border: 1px solid black;">
+                <div onclick="selectCountry('USA')">USA</div>
+                <div onclick="selectCountry('Canada')">Canada</div>
+                <div onclick="selectCountry('Mexico')">Mexico</div>
+            </div>
+        </div>
+
+        <!-- Issue 13: Focus management problems -->
+        <div tabindex="0" onclick="doSomething()" style="background: blue; color: white; padding: 10px; margin: 10px;">
+            This div pretends to be interactive but has poor focus management
+        </div>
+
+    </div>
+
     <script>
         function submitForm() {
             alert("Form submitted!");
         }
 
-        // Dropdown accessibility
         function toggleDropdown() {
-            var dropdown = document.getElementById("dropdown-list");
-            var button = document.getElementById("country-dropdown");
-            var expanded = button.getAttribute("aria-expanded") === "true";
-            button.setAttribute("aria-expanded", !expanded);
-            dropdown.setAttribute("aria-expanded", !expanded);
-            if (!expanded) {
-                // Focus first option
-                var options = dropdown.querySelectorAll('.custom-dropdown-option');
-                if (options.length) options[0].focus();
-            } else {
-                button.focus();
-            }
+            var dropdown = document.getElementById("dropdown");
+            dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
         }
+
         function selectCountry(country) {
-            var button = document.getElementById("country-dropdown");
-            button.querySelector('span').textContent = country + ' ▼';
-            button.setAttribute("aria-expanded", "false");
-            document.getElementById("dropdown-list").setAttribute("aria-expanded", "false");
-            button.focus();
             alert("Selected: " + country);
+            document.getElementById("dropdown").style.display = "none";
         }
-        function dropdownKeydown(e) {
-            if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
-                e.preventDefault();
-                toggleDropdown();
-            }
-        }
-        function dropdownOptionKeydown(e, country) {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                selectCountry(country);
-            } else if (e.key === "ArrowDown") {
-                e.preventDefault();
-                var next = e.target.nextElementSibling;
-                if (next) next.focus();
-            } else if (e.key === "ArrowUp") {
-                e.preventDefault();
-                var prev = e.target.previousElementSibling;
-                if (prev) prev.focus();
-            } else if (e.key === "Escape") {
-                document.getElementById("country-dropdown").focus();
-                document.getElementById("country-dropdown").setAttribute("aria-expanded", "false");
-                document.getElementById("dropdown-list").setAttribute("aria-expanded", "false");
-            }
-        }
-        // Interactive div keyboard support
-        function interactiveDivKeydown(e) {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                doSomething();
-            }
-        }
-        // Placeholder for interactive div action
+
         function doSomething() {
-            alert("Interactive div activated!");
+            alert("Something happened!");
         }
     </script>
 </body>
