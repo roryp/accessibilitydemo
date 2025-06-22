@@ -1,30 +1,79 @@
 <!DOCTYPE html>
-<html >
+<html lang="en">
 <head>
-    <title>Accessibility Issues Demo - What NOT to Do</title>
+    <title>Accessibility Issues Fixed - Best Practices Demo</title>
     <style>
         body {
-            background-color: #00bbff;
-            color: #ffffff;
+            background-color: #ffffff;
+            color: #333333;
             font-family: Arial, sans-serif;
+            line-height: 1.6;
+            font-size: 16px;
         }
         .container {
-            margin: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        .low-contrast {
-            background-color: #f0f0f0;
-            color: #ffffff;
-            padding: 10px;
+        .good-contrast {
+            background-color: #f8f9fa;
+            color: #333333;
+            padding: 15px;
+            border-left: 4px solid #007bff;
         }
-        .small-text {
-            font-size: 8px;
+        .readable-text {
+            font-size: 16px;
         }
-        .button-like {
-            background-color: red;
+        .btn {
+            background-color: #0056b3;
             color: white;
-            padding: 10px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
-            display: inline-block;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #003d82;
+        }
+        .btn:focus {
+            outline: 3px solid #80bdff;
+            outline-offset: 2px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+        fieldset {
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        legend {
+            font-weight: bold;
+            padding: 0 10px;
+        }
+        small {
+            color: #666;
+            font-size: 14px;
         }
         .hidden-label {
             display: none;
@@ -32,128 +81,217 @@
         table {
             border-collapse: collapse;
             width: 100%;
+            margin: 20px 0;
         }
         th, td {
-            border: 1px solid black;
-            padding: 8px;
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
         }
-        .blinking {
-            animation: blink 1s linear infinite;
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
         }
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+        caption {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: left;
         }
+        /* Remove blinking animation */
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Issue 1: Missing main landmark and heading hierarchy -->
-        <div>
-            <h3>Welcome to Our Website</h3>
-            <h1>This heading order is wrong</h1>
-        </div>
+    <main id="main-content" class="container">
+        <!-- Fixed: Proper heading hierarchy -->
+        <section>
+            <h1>Welcome to Our Website</h1>
+            <h2>This heading order is now correct</h2>
+        </section>
 
-        <!-- Issue 2: Poor color contrast -->
-        <div class="low-contrast">
-            <p>This text has very poor contrast and is hard to read!</p>
-        </div>
-
-        <!-- Issue 3: Images without alt text -->
-        <img src="important-chart.jpg" width="300" height="200">
-        <img src="decorative-icon.png" alt="A beautiful decorative image that adds no informational value but has unnecessary alt text">
-
-        <!-- Issue 4: Form without proper labels -->
-        <form>
-            <h2>Contact Form</h2>
-            <p>Name:</p>
-            <input type="text" placeholder="Enter your name">
-            
-            <p>Email:</p>
-            <input type="email">
-            
-            <label class="hidden-label" for="phone">Phone:</label>
-            <input type="tel" id="phone" placeholder="Phone number">
-            
-            <p>Message:</p>
-            <textarea placeholder="Your message here"></textarea>
-            
-            <!-- Issue 5: Non-semantic button -->
-            <div class="button-like" onclick="submitForm()">Submit</div>
-        </form>
-
-        <!-- Issue 6: Links without descriptive text -->
-        <p>For more information, <a href="info.html">click here</a> or <a href="details.html">read more</a></p>
-
-        <!-- Issue 7: Table without headers -->
-        <table>
-            <tr>
-                <td>Product</td>
-                <td>Price</td>
-                <td>Stock</td>
-            </tr>
-            <tr>
-                <td>Widget A</td>
-                <td>$19.99</td>
-                <td>In Stock</td>
-            </tr>
-            <tr>
-                <td>Widget B</td>
-                <td>$29.99</td>
-                <td>Out of Stock</td>
-            </tr>
-        </table>
-
-        <!-- Issue 8: Content that auto-updates/blinks -->
-        <p class="blinking">🚨 URGENT: This text blinks and can cause seizures! 🚨</p>
-
-        <!-- Issue 9: Tiny text -->
-        <p class="small-text">This text is way too small to read comfortably and violates WCAG guidelines for minimum font size.</p>
-
-        <!-- Issue 10: Missing language attribute and page structure -->
-        <!-- Issue 11: Auto-playing content -->
-        <video width="320" height="240" autoplay loop>
-            <source src="background-video.mp4" type="video/mp4">
-        </video>
-
-        <!-- Issue 12: Inaccessible custom dropdown -->
-        <div>
-            <p>Select your country:</p>
-            <div onclick="toggleDropdown()" style="border: 1px solid black; padding: 5px; cursor: pointer;">
-                Select Country ▼
+        <!-- Fixed: Good color contrast -->
+        <section>
+            <div class="good-contrast">
+                <p>This text has excellent contrast and is easy to read for everyone!</p>
             </div>
-            <div id="dropdown" style="display: none; border: 1px solid black;">
-                <div onclick="selectCountry('USA')">USA</div>
-                <div onclick="selectCountry('Canada')">Canada</div>
-                <div onclick="selectCountry('Mexico')">Mexico</div>
+        </section>
+
+        <!-- Fixed: Images with proper alt text -->
+        <section>
+            <h2>Images with Proper Alt Text</h2>
+            <img src="important-chart.jpg" alt="Sales chart showing 25% increase in Q4 2024" width="300" height="200">
+            <img src="decorative-icon.png" alt="" role="presentation">
+            <p><em>Note: Decorative images should have empty alt text (alt="") or role="presentation"</em></p>
+        </section>
+
+        <!-- Fixed: Form with proper labels and structure -->
+        <section>
+            <h2 id="contact-form">Accessible Contact Form</h2>
+            <form>
+                <fieldset>
+                    <legend>Contact Information</legend>
+                    
+                    <div class="form-group">
+                        <label for="name">Name (required):</label>
+                        <input type="text" id="name" name="name" required aria-describedby="name-help">
+                        <small id="name-help">Please enter your full name</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email (required):</label>
+                        <input type="email" id="email" name="email" required aria-describedby="email-help">
+                        <small id="email-help">We'll never share your email with anyone else</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" name="phone" aria-describedby="phone-help">
+                        <small id="phone-help">Optional: Include area code</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message (required):</label>
+                        <textarea id="message" name="message" rows="5" required aria-describedby="message-help"></textarea>
+                        <small id="message-help">Please provide details about your inquiry</small>
+                    </div>
+                    
+                    <!-- Fixed: Proper semantic button -->
+                    <button type="submit" class="btn">Send Message</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <!-- Fixed: Descriptive link text -->
+        <section>
+            <h2>Helpful Resources</h2>
+            <p>Learn more about our services:</p>
+            <ul>
+                <li><a href="info.html">Read our detailed service information</a></li>
+                <li><a href="details.html">View our complete product specifications</a></li>
+                <li><a href="accessibility.html">Learn about our accessibility commitment</a></li>
+            </ul>
+        </section>
+
+        <!-- Fixed: Table with proper headers and structure -->
+        <section>
+            <h2 id="data-table">Product Information</h2>
+            <table>
+                <caption>Current product inventory and pricing</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Stock Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Widget A</th>
+                        <td>$19.99</td>
+                        <td>In Stock</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Widget B</th>
+                        <td>$29.99</td>
+                        <td>Out of Stock</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Fixed: No seizure-inducing content -->
+        <section>
+            <p><strong>IMPORTANT:</strong> This text is stationary and safe for all users, including those with seizure disorders.</p>
+        </section>
+
+        <!-- Fixed: Readable text size -->
+        <section>
+            <p class="readable-text">This text is now properly sized at 16px and follows WCAG guidelines for minimum font size and readability.</p>
+        </section>
+
+        <!-- Fixed: Accessible media with controls -->
+        <section>
+            <h2>Video Content</h2>
+            <video width="320" height="240" controls aria-describedby="video-description">
+                <source src="background-video.mp4" type="video/mp4">
+                <track kind="captions" src="captions.vtt" srclang="en" label="English captions">
+                Your browser does not support the video tag.
+            </video>
+            <p id="video-description">This video demonstrates our product features with captions available.</p>
+        </section>
+
+        <!-- Fixed: Accessible dropdown with proper semantics -->
+        <section>
+            <h2>Country Selection</h2>
+            <div class="form-group">
+                <label for="country-select">Select your country:</label>
+                <select id="country-select" name="country">
+                    <option value="">Choose a country</option>
+                    <option value="usa">United States</option>
+                    <option value="canada">Canada</option>
+                    <option value="mexico">Mexico</option>
+                </select>
             </div>
-        </div>
+        </section>
 
-        <!-- Issue 13: Focus management problems -->
-        <div tabindex="0" onclick="doSomething()" style="background: blue; color: white; padding: 10px; margin: 10px;">
-            This div pretends to be interactive but has poor focus management
-        </div>
+        <!-- Fixed: Proper interactive elements -->
+        <section>
+            <h2>Interactive Elements</h2>
+            <button type="button" class="btn" onclick="showMessage()" aria-describedby="button-help">
+                Accessible Interactive Button
+            </button>
+            <p id="button-help">This button demonstrates proper focus management and semantic markup.</p>
+        </section>
 
-    </div>
+    </main>
 
     <script>
-        function submitForm() {
-            alert("Form submitted!");
+        function showMessage() {
+            // Create accessible alert
+            const alertDiv = document.createElement('div');
+            alertDiv.setAttribute('role', 'alert');
+            alertDiv.setAttribute('aria-live', 'assertive');
+            alertDiv.textContent = 'Button activated successfully!';
+            alertDiv.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #d4edda; color: #155724; padding: 15px; border: 1px solid #c3e6cb; border-radius: 4px; z-index: 1000;';
+            
+            document.body.appendChild(alertDiv);
+            
+            // Remove alert after 3 seconds
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.parentNode.removeChild(alertDiv);
+                }
+            }, 3000);
         }
 
-        function toggleDropdown() {
-            var dropdown = document.getElementById("dropdown");
-            dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
-        }
-
-        function selectCountry(country) {
-            alert("Selected: " + country);
-            document.getElementById("dropdown").style.display = "none";
-        }
-
-        function doSomething() {
-            alert("Something happened!");
-        }
+        // Ensure forms are accessible
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Create success message
+                    const successDiv = document.createElement('div');
+                    successDiv.setAttribute('role', 'alert');
+                    successDiv.setAttribute('aria-live', 'polite');
+                    successDiv.textContent = 'Form submitted successfully! We will respond within 24 hours.';
+                    successDiv.style.cssText = 'background: #d4edda; color: #155724; padding: 15px; border: 1px solid #c3e6cb; border-radius: 4px; margin: 20px 0;';
+                    
+                    form.parentNode.insertBefore(successDiv, form.nextSibling);
+                    
+                    // Focus management - move focus to success message
+                    successDiv.setAttribute('tabindex', '-1');
+                    successDiv.focus();
+                    
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        if (successDiv.parentNode) {
+                            successDiv.parentNode.removeChild(successDiv);
+                        }
+                    }, 5000);
+                });
+            }
+        });
     </script>
 </body>
 </html>
