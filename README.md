@@ -79,8 +79,6 @@ pip install requests
 python ai_accessibility_analyzer.py
 ```
 
-```
-
 ## 📋 WCAG Guidelines
 
 - **Level A**: Minimum accessibility
@@ -89,7 +87,21 @@ python ai_accessibility_analyzer.py
 
 Target **WCAG 2.1 AA** for best balance of accessibility and practicality.
 
-## 🛠️ AI-Assisted Fixes
+## 🤖 AI-Assisted Fixes
+
+### Copilot Instructions
+This repository includes custom instructions to ensure consistent accessibility-focused development:
+
+- **`.github/instructions/copilot-instructions.md`** - Custom instructions for GitHub Copilot
+  - Focuses on WCAG 2.2 Level AA compliance during code generation
+  - Ensures semantic HTML structure and proper accessibility patterns
+  - Guides Copilot to prioritize keyboard navigation and ARIA usage
+
+- **PR Review Instructions** - Automated accessibility checks in pull requests
+  - Only reviews for WCAG 2.2 Level AA accessibility compliance
+  - Validates semantic HTML, keyboard operability, and color contrast
+  - Checks ARIA usage, form labels, and focus management
+  - Ignores unrelated code quality issues to focus purely on accessibility
 
 ### GitHub Copilot Prompts
 ```
