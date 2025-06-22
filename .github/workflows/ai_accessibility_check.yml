@@ -6,6 +6,10 @@ name: AI Accessibility Check
 # Without the token, the workflow will run in mock analysis mode
 
 on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
   workflow_dispatch:  # Allow manual triggering
 
 permissions:
