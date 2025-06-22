@@ -1,159 +1,159 @@
 <!DOCTYPE html>
-<html >
+<html lang="en">
 <head>
-    <title>Accessibility Issues Demo - What NOT to Do</title>
-    <style>
-        body {
-            background-color: #00bbff;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            margin: 20px;
-        }
-        .low-contrast {
-            background-color: #f0f0f0;
-            color: #ffffff;
-            padding: 10px;
-        }
-        .small-text {
-            font-size: 8px;
-        }
-        .button-like {
-            background-color: red;
-            color: white;
-            padding: 10px;
-            cursor: pointer;
-            display: inline-block;
-        }
-        .hidden-label {
-            display: none;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-        }
-        .blinking {
-            animation: blink 1s linear infinite;
-        }
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <title>Accessible Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    .container {
+      margin: 20px;
+      max-width: 60rem;
+    }
+
+    /* Buttons */
+    .btn {
+      background-color: #d32f2f;   /* 4.5 : 1 contrast on white */
+      color: #ffffff;
+      border: 0;
+      padding: 10px 16px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .btn:focus {
+      outline: 3px solid #000;
+      outline-offset: 2px;
+    }
+
+    /* Tables */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+
+    /* Misc */
+    label,
+    input,
+    textarea,
+    select {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+    h1,
+    h2 {
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Issue 1: Missing main landmark and heading hierarchy -->
-        <div>
-            <h3>Welcome to Our Website</h3>
-            <h1>This heading order is wrong</h1>
-        </div>
+  <main class="container">
+    <h1>Welcome to Our Website</h1>
 
-        <!-- Issue 2: Poor color contrast -->
-        <div class="low-contrast">
-            <p>This text has very poor contrast and is hard to read!</p>
-        </div>
+    <!-- Good-contrast text -->
+    <section aria-labelledby="contrast">
+      <h2 id="contrast">High-Contrast Example</h2>
+      <p>This text has sufficient contrast and is easy to read.</p>
+    </section>
 
-        <!-- Issue 3: Images without alt text -->
-        <img src="important-chart.jpg" width="300" height="200">
-        <img src="decorative-icon.png" alt="A beautiful decorative image that adds no informational value but has unnecessary alt text">
+    <!-- Images with correct alt text -->
+    <section aria-labelledby="images">
+      <h2 id="images">Images</h2>
+      <img
+        src="important-chart.jpg"
+        width="300"
+        height="200"
+        alt="Bar chart comparing quarterly sales data"
+      />
+      <img
+        src="decorative-icon.png"
+        width="64"
+        height="64"
+        alt=""
+      />
+    </section>
 
-        <!-- Issue 4: Form without proper labels -->
-        <form>
-            <h2>Contact Form</h2>
-            <p>Name:</p>
-            <input type="text" placeholder="Enter your name">
-            
-            <p>Email:</p>
-            <input type="email">
-            
-            <label class="hidden-label" for="phone">Phone:</label>
-            <input type="tel" id="phone" placeholder="Phone number">
-            
-            <p>Message:</p>
-            <textarea placeholder="Your message here"></textarea>
-            
-            <!-- Issue 5: Non-semantic button -->
-            <div class="button-like" onclick="submitForm()">Submit</div>
-        </form>
+    <!-- Properly labeled form -->
+    <section aria-labelledby="contact">
+      <h2 id="contact">Contact Form</h2>
+      <form>
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Enter your name" />
 
-        <!-- Issue 6: Links without descriptive text -->
-        <p>For more information, <a href="info.html">click here</a> or <a href="details.html">read more</a></p>
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="Enter your email" />
 
-        <!-- Issue 7: Table without headers -->
-        <table>
-            <tr>
-                <td>Product</td>
-                <td>Price</td>
-                <td>Stock</td>
-            </tr>
-            <tr>
-                <td>Widget A</td>
-                <td>$19.99</td>
-                <td>In Stock</td>
-            </tr>
-            <tr>
-                <td>Widget B</td>
-                <td>$29.99</td>
-                <td>Out of Stock</td>
-            </tr>
-        </table>
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel" placeholder="Phone number" />
 
-        <!-- Issue 8: Content that auto-updates/blinks -->
-        <p class="blinking">🚨 URGENT: This text blinks and can cause seizures! 🚨</p>
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Your message here"></textarea>
 
-        <!-- Issue 9: Tiny text -->
-        <p class="small-text">This text is way too small to read comfortably and violates WCAG guidelines for minimum font size.</p>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </section>
 
-        <!-- Issue 10: Missing language attribute and page structure -->
-        <!-- Issue 11: Auto-playing content -->
-        <video width="320" height="240" autoplay loop>
-            <source src="background-video.mp4" type="video/mp4">
-        </video>
+    <!-- Descriptive links -->
+    <section aria-labelledby="links">
+      <h2 id="links">More Information</h2>
+      <p>
+        Read our
+        <a href="info.html">company overview</a> or review the
+        <a href="details.html">detailed product specifications</a>.
+      </p>
+    </section>
 
-        <!-- Issue 12: Inaccessible custom dropdown -->
-        <div>
-            <p>Select your country:</p>
-            <div onclick="toggleDropdown()" style="border: 1px solid black; padding: 5px; cursor: pointer;">
-                Select Country ▼
-            </div>
-            <div id="dropdown" style="display: none; border: 1px solid black;">
-                <div onclick="selectCountry('USA')">USA</div>
-                <div onclick="selectCountry('Canada')">Canada</div>
-                <div onclick="selectCountry('Mexico')">Mexico</div>
-            </div>
-        </div>
+    <!-- Table with headers and scope -->
+    <section aria-labelledby="inventory">
+      <h2 id="inventory">Product Inventory</h2>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Price</th>
+            <th scope="col">Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Widget A</td>
+            <td>$19.99</td>
+            <td>In Stock</td>
+          </tr>
+          <tr>
+            <td>Widget B</td>
+            <td>$29.99</td>
+            <td>Out of Stock</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-        <!-- Issue 13: Focus management problems -->
-        <div tabindex="0" onclick="doSomething()" style="background: blue; color: white; padding: 10px; margin: 10px;">
-            This div pretends to be interactive but has poor focus management
-        </div>
+    <!-- Native select replaces custom dropdown -->
+    <section aria-labelledby="country">
+      <h2 id="country">Select Your Country</h2>
+      <label for="country-select">Country</label>
+      <select id="country-select">
+        <option value="">--Select--</option>
+        <option>USA</option>
+        <option>Canada</option>
+        <option>Mexico</option>
+      </select>
+    </section>
+  </main>
 
-    </div>
-
-    <script>
-        function submitForm() {
-            alert("Form submitted!");
-        }
-
-        function toggleDropdown() {
-            var dropdown = document.getElementById("dropdown");
-            dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
-        }
-
-        function selectCountry(country) {
-            alert("Selected: " + country);
-            document.getElementById("dropdown").style.display = "none";
-        }
-
-        function doSomething() {
-            alert("Something happened!");
-        }
-    </script>
+  <!-- No autoplay, flashing, or hidden focusable elements -->
 </body>
 </html>
