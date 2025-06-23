@@ -1,12 +1,12 @@
 === Vibe ===
 https://www.youtube.com/watch?v=PzQXm5db_-s
 
+=== Generation ===
+Create a new project with a simple HTML file to showcase how to fix accessibility issues.
+Start with a deliberately non-accessible example using plain HTML.
+
 === Demo Link ===
 https://aka.ms/accessibilitydemo
-
-=== Generation ===
-Create a simple HTML file to showcase how to fix accessibility issues.
-Start with a deliberately non-accessible example using plain HTML.
 
 === Axe-linter ===
 Fix accessibility violations using Axe Linter.
