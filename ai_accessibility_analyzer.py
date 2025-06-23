@@ -4,7 +4,7 @@ import os
 import sys
 
 def call_github_models(prompt):
-    """Call GitHub Models API with GPT-4o"""
+    """Call GitHub Models API with GPT-4.1"""
     try:
         # Check if token is available
         token = os.environ.get('MODELS_TOKEN')
@@ -87,7 +87,7 @@ def analyze_html_file(filename):
             print(f"No MODELS_TOKEN found - using mock analysis for {filename}")
             ai_response = mock_analysis(filename, html_content)
         else:
-            # Enhanced prompt optimized for GPT-4o's capabilities  
+            # Enhanced prompt optimized for GPT-4.1's capabilities  
             prompt = f"""Perform a comprehensive accessibility audit of this HTML code. Analyze it against WCAG 2.1 AA guidelines and provide detailed findings.
 
 Focus on these critical areas:
@@ -167,7 +167,7 @@ def main():
     with open('ai_accessibility_report.md', 'w', encoding='utf-8') as f:
         f.write("# AI-Powered Accessibility Analysis Report\n\n")
         if token:
-            f.write("*Analysis performed by GPT-4o via GitHub Models*\n\n")
+            f.write("*Analysis performed by GPT-4.1 via GitHub Models*\n\n")
         else:
             f.write("*Mock analysis - configure MODELS_TOKEN for real AI analysis*\n\n")
         f.write("This report provides accessibility analysis based on WCAG 2.1 AA guidelines.\n\n")
