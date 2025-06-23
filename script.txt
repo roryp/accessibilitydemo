@@ -15,8 +15,8 @@ Fix accessibility violations using Axe Linter.
 Fix all accessibility issues in this HTML file to meet WCAG 2.1 AA standards. Address color contrast, semantic structure, headings, labels, alt text, focus management, keyboard accessibility, and any other common accessibility problems. Make the page fully accessible for screen readers and users with disabilities.
 
 === Review Pull Request ===
-https://github.com/roryp/accessibilitydemo/pull/9
-Ask Copilot
+    https://github.com/roryp/accessibilitydemo/pull/9
+    Ask Copilot
 
 === GitHub Actions
 
@@ -35,6 +35,9 @@ https://github.com/roryp/accessibilitydemo/pull/8/agent-sessions/3990b7a6-268f-4
 
 Agent commit:
 https://github.com/roryp/accessibilitydemo/pull/8/commits/ad786f01312549a4dbd0929027e6e013d501ae3a
+
+SORA 
+https://ca-sora-jtoj4j33utu3i.graybush-61f909f3.eastus.azurecontainerapps.io
 
 === Immersive Mode ===
 Next: explore GitHub Spaces for immersive code review and demo experience.
