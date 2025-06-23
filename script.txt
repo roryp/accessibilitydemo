@@ -1,0 +1,1 @@
+Fix all accessibility issues in this HTML file to meet WCAG 2.1 AA standards. Address color contrast, semantic structure, headings, labels, alt text, focus management, keyboard accessibility, and any other common accessibility problems. Make the page fully accessible for screen readers and users with disabilities.
