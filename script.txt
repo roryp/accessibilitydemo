@@ -16,13 +16,15 @@ Fix all accessibility issues in this HTML file to meet WCAG 2.1 AA standards. Ad
 
 === Review Pull Request ===
 https://github.com/roryp/accessibilitydemo/pull/9
+Ask Copilot
 
-=== GitHub Actions ===
+=== GitHub Actions
+
+=== GitHub Marketplace Models ===
+https://github.com/marketplace/models
+
 Accessibility scan result:
 https://github.com/roryp/accessibilitydemo/actions/runs/15807227466
-
-GitHub Marketplace Models:
-https://github.com/marketplace/models
 
 === Coding Agent ===
 Agent request issue:
