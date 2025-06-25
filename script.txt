@@ -1,46 +1,13 @@
-=== Vibe ===
-https://www.youtube.com/watch?v=PzQXm5db_-s
+Demo steps 
 
-=== Generation ===
-Create a new project with a simple HTML file to showcase how to fix accessibility issues.
-Start with a deliberately non-accessible example using plain HTML.
-
-=== Demo Link ===
-https://aka.ms/accessibilitydemo
-
-=== Axe-linter ===
-Fix accessibility violations using Axe Linter.
-
-=== copilot ===
-Fix all accessibility issues in this HTML file to meet WCAG 2.1 AA standards. Address color contrast, semantic structure, headings, labels, alt text, focus management, keyboard accessibility, and any other common accessibility problems. Make the page fully accessible for screen readers and users with disabilities.
-
-=== Review Pull Request ===
-    https://github.com/roryp/accessibilitydemo/pull/9
-    Ask Copilot
-
-=== GitHub Actions
-
-=== GitHub Marketplace Models ===
-https://github.com/marketplace/models
-
-Accessibility scan result:
-https://github.com/roryp/accessibilitydemo/actions/runs/15807227466
-
-=== Coding Agent ===
-Agent request issue:
-https://github.com/roryp/accessibilitydemo/issues/7
-
-Agent session:
-https://github.com/roryp/accessibilitydemo/pull/8/agent-sessions/3990b7a6-268f-4971-9d4d-8ae8701766a2
-
-Agent commit:
-https://github.com/roryp/accessibilitydemo/pull/8/commits/ad786f01312549a4dbd0929027e6e013d501ae3a
-
-SORA 
-https://ca-sora-jtoj4j33utu3i.graybush-61f909f3.eastus.azurecontainerapps.io
-
-=== Immersive Mode ===
-Next: explore GitHub Spaces for immersive code review and demo experience.
-
-=== GitHub Spaces (Spark) ===
-https://github.com/spark/roryp/accessibility-checke
+Seed repo – create deliberately broken HTML in demo https://aka.ms/accessibilitydemo
+Baseline scan – run Axe-linter to list WCAG 2.1 AA violations
+Auto-fix – prompt GitHub Copilot to resolve color, structure, focus, keyboard, alt-text issues
+Peer review – open PR and request Copilot code-review https://github.com/roryp/accessibilitydemo/pull/9
+CI proof – GitHub Actions ai a11y scan (pass expected) https://github.com/roryp/accessibilitydemo/actions/runs/15807227466
+    ⁠Extendibility – highlight GitHub Marketplace LLM models https://github.com/marketplace/models
+Showcase agents – walk through Coding Agent fix flow
+• Issue https://github.com/roryp/accessibilitydemo/issues/7
+• Session https://github.com/roryp/accessibilitydemo/pull/8/agent-sessions/3990b7a6-268f-4971-9d4d-8ae8701766a2
+• Commit https://github.com/roryp/accessibilitydemo/pull/8/commits/ad786f01312549a4dbd0929027e6e013d501ae3a
+Next step – preview immersive review in GitHub Spaces https://github.com/spark/roryp/accessibility-checke
