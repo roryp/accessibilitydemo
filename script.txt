@@ -11,3 +11,50 @@ Showcase agents – walk through Coding Agent fix flow
 • Session https://github.com/roryp/accessibilitydemo/pull/8/agent-sessions/3990b7a6-268f-4971-9d4d-8ae8701766a2
 • Commit https://github.com/roryp/accessibilitydemo/pull/8/commits/ad786f01312549a4dbd0929027e6e013d501ae3a
 Next step – preview immersive review in GitHub Spaces https://github.com/spark/roryp/accessibility-checke
+
+
+Detailed steps:
+
+=== Vibe ===
+https://www.youtube.com/watch?v=PzQXm5db_-s
+
+=== Generation ===
+Create a new project with a simple HTML file to showcase how to fix accessibility issues.
+Start with a deliberately non-accessible example using plain HTML.
+
+=== Demo Link ===
+https://aka.ms/accessibilitydemo
+
+=== Axe-linter ===
+Fix accessibility violations using Axe Linter.
+
+=== copilot ===
+Fix all accessibility issues in this HTML file to meet WCAG 2.1 AA standards. Address color contrast, semantic structure, headings, labels, alt text, focus management, keyboard accessibility, and any other common accessibility problems. Make the page fully accessible for screen readers and users with disabilities.
+
+=== Review Pull Request ===
+    https://github.com/roryp/accessibilitydemo/pull/9
+    Ask Copilot
+
+=== GitHub Actions
+
+=== GitHub Marketplace Models ===
+https://github.com/marketplace/models
+
+Accessibility scan result:
+https://github.com/roryp/accessibilitydemo/actions/runs/15807227466
+
+=== Coding Agent ===
+Agent request issue:
+https://github.com/roryp/accessibilitydemo/issues/7
+
+Agent session:
+https://github.com/roryp/accessibilitydemo/pull/8/agent-sessions/3990b7a6-268f-4971-9d4d-8ae8701766a2
+
+Agent commit:
+https://github.com/roryp/accessibilitydemo/pull/8/commits/ad786f01312549a4dbd0929027e6e013d501ae3a
+
+=== Immersive Mode ===
+Next: explore GitHub Spaces for immersive code review and demo experience.
+
+=== GitHub Spaces (Spark) ===
+https://github.com/spark/roryp/accessibility-checke
