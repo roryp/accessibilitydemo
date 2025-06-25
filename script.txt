@@ -18,15 +18,15 @@ Detailed steps:
 === Vibe ===
 https://www.youtube.com/watch?v=PzQXm5db_-s
 
-=== Generation ===
+=== Generate project in vscode with copilot ===
 Create a new project with a simple HTML file to showcase how to fix accessibility issues.
 Start with a deliberately non-accessible example using plain HTML.
 
-=== Demo Link ===
+=== Demo Repo Link ===
 https://aka.ms/accessibilitydemo
 
 === Axe-linter ===
-Fix accessibility violations using Axe Linter.
+Fix accessibility violations using Axe Linter  -https://marketplace.visualstudio.com/items?itemName=deque-systems.vscode-axe-linter
 
 === copilot ===
 Fix all accessibility issues in this HTML file to meet WCAG 2.1 AA standards. Address color contrast, semantic structure, headings, labels, alt text, focus management, keyboard accessibility, and any other common accessibility problems. Make the page fully accessible for screen readers and users with disabilities.
