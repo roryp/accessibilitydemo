@@ -4,13 +4,16 @@
 
 Learn web accessibility through two HTML files: one with common accessibility problems and another showing the fixes. Perfect for developers learning WCAG 2.1 AA compliance.
 
+> **⚡ TL;DR:** Want a quick hands-on walkthrough? Check out **[demo.md](demo.md)** for a streamlined IDE & browser-only tutorial that gets you from broken to fixed accessibility in minutes.
+
 ## 🚀 Quick Start
 
-1. **Explore the demos**:
+1. **Follow the quick demo**: See **[demo.md](demo.md)** for a step-by-step walkthrough using VS Code and browser tools
+2. **Explore the demos**:
    - `accessibility-issues-demo.html` - Shows accessibility violations
    - `accessibility-fixed-demo.html` - Shows proper implementation
-2. **Test with tools**: Use keyboard navigation, screen readers, and automated testing
-3. **Learn the patterns**: Review this guide to understand each issue and fix
+3. **Test with tools**: Use keyboard navigation, screen readers, and automated testing
+4. **Learn the patterns**: Review this guide to understand each issue and fix
 
 ## What You'll Learn
 
