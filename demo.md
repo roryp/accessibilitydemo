@@ -18,7 +18,7 @@ All subsequent Git operations (commit, push, pullrequest) happen through the **S
 
 ## 2  Initial Testing  Accessibility Insights & Axe linter
 
-1. Serve or open **`index.html`** in Chrome/Edge.  
+1. Serve or open the error html file in Chrome/Edge.  
 2. Click the **Accessibility Insights for Web** extension icon.  
 3. Run a **FastPass** to capture an automated + tabstops report. (Export if you like.)  
 4. Optional but handy: In VS Code run **Axe linter** extension. This shows identical issues in the **Problems** panel.  
