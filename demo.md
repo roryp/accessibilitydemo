@@ -1,6 +1,6 @@
 # Accessibility Demo  IDE & Browser-Only Walk-through
 
-Move the **[accessibilitydemo](https://github.com/roryp/accessibilitydemo)** repository from failing WCAG checks to full compliance without touching a terminaleverything happens in your **browser** or **VS Code**.
+Move the **[accessibilitydemo](https://github.com/roryp/accessibilitydemo)** repository from failing WCAG checks to full compliance without touching a terminal—everything happens in your **browser** or **VS Code**.
 
 > **Flow:** Manual discovery -> Semi-AI fixes -> Full-AI agent -> CI validation
 
@@ -12,7 +12,7 @@ Move the **[accessibilitydemo](https://github.com/roryp/accessibilitydemo)** rep
 2. In VS Code choose **File -> Clone Repository** and paste the URL of **your fork**.  
 3. Open the workspace and choose **Trust** when prompted.
 
-All subsequent Git operations (commit, push, pullrequest) happen through the **Source Control** panel or the **GitHub website**no CLI required.
+All subsequent Git operations (commit, push, pull request) happen through the **Source Control** panel or the **GitHub website**—no CLI required.
 
 ---
 
@@ -22,9 +22,9 @@ All subsequent Git operations (commit, push, pullrequest) happen through the **S
 2. Click the **Accessibility Insights for Web** extension icon.  
 3. Run a **FastPass** to capture an automated + tabstops report. (Export if you like.)  
 4. Optional but handy: In VS Code run **Axelinter**. This shows identical issues in the **Problems** panel.  
-5. Fix any lowhanging fruit right away, then rerun FastPass to confirm they are gone.
+5. Fix any low-hanging fruit right away, then rerun FastPass to confirm they are gone.
 
-Why both? Axelinter gives realtime feedback while you edit; FastPass provides a formal report you can export or attach to a PR.
+Why both? Axelinter gives real-time feedback while you edit; FastPass provides a formal report you can export or attach to a PR.
 
 ---
 
@@ -53,7 +53,7 @@ Why both? Axelinter gives realtime feedback while you edit; FastPass provides a 
 
 ## 5  Continuous Validation  Three GitHub Actions
 
-Your fork already contains three purposebuilt workflows in **`.github/workflows/`**:
+Your fork already contains three purpose-built workflows in **`.github/workflows/`**:
 
 | Workflow file | Job name | What it does |
 |---------------|----------|--------------|
@@ -64,7 +64,7 @@ Your fork already contains three purposebuilt workflows in **`.github/workflows/
 ### How these integrate with your testing loop
 
 1. After you Publish Branch & Create PR from VS Code, open the pull request in the browser.  
-2. Watch the Checks tabeach workflow reports status.  
+2. Watch the Checks tab—each workflow reports status.  
 3. If any step fails, click its name -> Artifacts to download the detailed report.  
 4. Go back to VS Code, fix code with Copilot completions/agent, commit & push. Checks automatically rerun.  
 5. Merge when all three checks are green.
@@ -77,6 +77,7 @@ Your fork already contains three purposebuilt workflows in **`.github/workflows/
 ![Pa11y](https://github.com/<your-user>/accessibilitydemo/actions/workflows/pa11y.yml/badge.svg)
 ![AI A11y](https://github.com/<your-user>/accessibilitydemo/actions/workflows/ai_accessibility_check.yml/badge.svg)
 ```
+
 </details>
 
 ---
@@ -108,7 +109,7 @@ Review, merge, done.
 | FullAI fix | Copilot coding agent | VS Code Chat |
 | Safeguards | Three GitHub Actions | PR Checks tab |
 
-With just **IDE + browser**, you can discover, remediate, verify, and enforce accessibility complianceall tracked in Git.
+With just **IDE + browser**, you can discover, remediate, verify, and enforce accessibility compliance—all tracked in Git.
 
 ---
 
