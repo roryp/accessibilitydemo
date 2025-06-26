@@ -6,7 +6,7 @@ Move the **[accessibilitydemo](https://github.com/roryp/accessibilitydemo)** rep
 
 ---
 
-## 1  Setup (UIonly)
+## 1  Setup (UI only)
 
 1. **Fork** the repository on GitHub.  
 2. In VS Code choose **File -> Clone Repository** and paste the URL of **your fork**.  
@@ -16,19 +16,19 @@ All subsequent Git operations (commit, push, pullrequest) happen through the **S
 
 ---
 
-## 2  Initial Testing  Accessibility Insights & Axelinter
+## 2  Initial Testing  Accessibility Insights & Axe linter
 
 1. Serve or open **`index.html`** in Chrome/Edge.  
 2. Click the **Accessibility Insights for Web** extension icon.  
 3. Run a **FastPass** to capture an automated + tabstops report. (Export if you like.)  
-4. Optional but handy: In VS Code run **Axelinter**. This shows identical issues in the **Problems** panel.  
+4. Optional but handy: In VS Code run **Axe linter** extension. This shows identical issues in the **Problems** panel.  
 5. Fix any lowhanging fruit right away, then rerun FastPass to confirm they are gone.
 
-Why both? Axelinter gives realtime feedback while you edit; FastPass provides a formal report you can export or attach to a PR.
+Why both? Axe linter gives realtime feedback while you edit; FastPass provides a formal report you can export or attach to a PR.
 
 ---
 
-## 3  SemiAI Fixes with Copilot Completions (IDE)
+## 3  Semi AI Fixes with Copilot Completions (IDE)
 
 1. Open a file flagged by FastPass/Axelinter.  
 2. Add a guiding comment such as `<!-- TODO add alt text -->` and press **Tab** to accept Copilots suggestion.  
@@ -37,7 +37,7 @@ Why both? Axelinter gives realtime feedback while you edit; FastPass provides a 
 
 ---
 
-## 4  FullAI Fixes with Copilot Agent (IDE)
+## 4  Full AI Fixes with Copilot Agent (IDE)
 
 1. Open **Copilot Chat** (Option+Command+I or via the sidebar icon).  
 2. Prompt:
@@ -103,9 +103,9 @@ Review, merge, done.
 | Stage | Tool | Interaction |
 |-------|------|-------------|
 | Manual snapshot | Accessibility Insights FastPass | Browser extension |
-| Realtime hints | Axelinter | VS Code Problems panel |
-| SemiAI fixes | Copilot completions | Inline in VS Code |
-| FullAI fix | Copilot coding agent | VS Code Chat |
+| Realtime hints | Axe linter | VS Code Problems panel |
+| Semi AI fixes | Copilot completions | Inline in VS Code |
+| Full AI fix | Copilot coding agent | VS Code Chat |
 | Safeguards | Three GitHub Actions | PR Checks tab |
 
 With just **IDE + browser**, you can discover, remediate, verify, and enforce accessibility complianceall tracked in Git.
