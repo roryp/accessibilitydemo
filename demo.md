@@ -104,7 +104,7 @@ Review, merge, done.
 | Stage | Tool | Interaction |
 |-------|------|-------------|
 | Manual snapshot | Accessibility Insights FastPass | Browser extension |
-| Realtime hints | Axelinter | VS Code Problems panel |
+| Real-time hints | Axelinter | VS Code Problems panel |
 | SemiAI fixes | Copilot completions | Inline in VS Code |
 | FullAI fix | Copilot coding agent | VS Code Chat |
 | Safeguards | Three GitHub Actions | PR Checks tab |
