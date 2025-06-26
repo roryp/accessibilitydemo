@@ -148,8 +148,6 @@ Quick setup for GPT-4.1 accessibility analysis:
 
 ---
 
-**Remember:** Accessibility benefits everyone - better SEO, usability, and user experience.
-
 ### Setup Instructions
 
 #### 1. Get GitHub Models Access
