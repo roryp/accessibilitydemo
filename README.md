@@ -4,34 +4,51 @@
 
 Learn web accessibility through two HTML files: one with common accessibility problems and another showing the fixes. Perfect for developers learning WCAG 2.1 AA compliance.
 
-> **⚡ TL;DR:** Want a quick hands-on walkthrough? Check out **[demo.md](demo.md)** for a streamlined IDE & browser-only tutorial that gets you from broken to fixed accessibility in minutes.
+> **⚡ Quick Start:** Want a hands-on walkthrough? Check out **[demo.md](demo.md)** for a streamlined IDE & browser-only tutorial that gets you from broken to fixed accessibility in minutes.
 
-## 🚀 Quick Start
+## Prerequisites
 
-1. **Follow the quick demo**: See **[demo.md](demo.md)** for a step-by-step walkthrough using VS Code and browser tools
-2. **Explore the demos**:
-   - `accessibility-issues-demo.html` - Shows accessibility violations
-   - `accessibility-fixed-demo.html` - Shows proper implementation
-3. **Test with tools**: Use keyboard navigation, screen readers, and automated testing
-4. **Learn the patterns**: Review this guide to understand each issue and fix
+- VS Code with GitHub Copilot
+- Chrome/Edge browser
+- Install these extensions:
+  - [Accessibility Insights for Web](https://accessibilityinsights.io/)
+  - [Axe Linter for VS Code](https://marketplace.visualstudio.com/items?itemName=deque-systems.vscode-axe-linter)
 
-## What You'll Learn
+## Quick Demo Flow
 
-**13+ common accessibility issues** with solutions:
+### 1. Get the Code (1 min)
+```
+1. Go to https://github.com/roryp/accessibilitydemo
+2. Click "Fork" → "Create fork"
+3. In VS Code: File → Clone Repository → paste your fork URL
+```
 
-1. **Poor Color Contrast** - Text that fails WCAG standards
-2. **Missing Alt Text** - Images without descriptions
-3. **Improper Heading Hierarchy** - Skipping heading levels
-4. **Forms Without Labels** - Input fields missing labels
-5. **Non-Semantic Elements** - Divs instead of buttons/links
-6. **Poor Link Text** - "Click here" links without context
-7. **Tables Without Headers** - Missing table headers and scope
-8. **Auto-playing Media** - Videos without user control
-9. **Text Too Small** - Font sizes below readable standards
-10. **Missing Language** - No lang attribute
-11. **Poor Focus Management** - No visible focus indicators
-12. **Inaccessible Controls** - Dropdowns without keyboard support
-13. **Blinking Content** - Animations that can trigger seizures
+### 2. See the Problems (2 min)
+1. Open `accessibility-issues-demo.html` in VS Code
+2. Look at the Problems panel - Axe Linter shows issues in real-time
+3. Right-click the file → "Open with Live Server" (or just open in browser)
+4. Run Accessibility Insights FastPass to see a full report
+
+### 3. Fix with AI (3 min)
+Open Copilot Chat (Ctrl+Alt+I) and paste:
+```
+Fix all accessibility issues in accessibility-issues-demo.html to meet WCAG 2.1 AA standards
+```
+Review → Accept → Save
+
+### 4. Verify Success (2 min)
+1. Commit and push your changes
+2. Create a Pull Request
+3. Watch the automated checks pass ✅
+
+## What Just Happened?
+
+You fixed 13+ accessibility violations:
+- ❌ Poor color contrast → ✅ WCAG compliant colors
+- ❌ Missing alt text → ✅ Descriptive image labels  
+- ❌ Wrong heading order → ✅ Proper H1→H2→H3 hierarchy
+- ❌ Unlabeled forms → ✅ Accessible form controls
+- And 9 more issues...
 
 ## 🧪 Testing Tools
 
@@ -46,7 +63,7 @@ Learn web accessibility through two HTML files: one with common accessibility pr
 - **WAVE** - Web accessibility evaluation
 - **Lighthouse** - Built into Chrome
 
-## � Automated Testing Workflows
+## 🚀 Automated Testing Workflows
 
 Three CI/CD workflows run on every push and PR:
 
@@ -65,7 +82,7 @@ Three CI/CD workflows run on every push and PR:
 - Comprehensive WCAG 2.1 AA analysis
 - Detailed remediation guidance
 
-**Local Testing:**
+### Local Testing Commands
 ```bash
 # axe-core
 npm install --save-dev @axe-core/cli serve
@@ -82,15 +99,7 @@ pip install requests
 python ai_accessibility_analyzer.py
 ```
 
-## 📋 WCAG Guidelines
-
-- **Level A**: Minimum accessibility
-- **Level AA**: Standard level (recommended)  
-- **Level AAA**: Highest level (government/critical services)
-
-Target **WCAG 2.1 AA** for best balance of accessibility and practicality.
-
-## 🤖 AI-Assisted Fixes
+## 🤖 AI-Assisted Development
 
 ### Copilot Instructions
 This repository includes custom instructions to ensure consistent accessibility-focused development:
@@ -121,42 +130,16 @@ Make form fields properly labeled with semantic elements
 @github Fix contrast issues to meet WCAG 2.1 AA standards
 ```
 
-## 📚 Resources
-
-- [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
-- [WebAIM](https://webaim.org/) - Practical resources and tools
-- [A11y Project](https://www.a11yproject.com/) - Community checklist
-- [MDN Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
-
-## 🤖 How This Was Created
-
-Generated with AI using this prompt:
-```
-create a simple html file to showcase how to fix accessibility issues. make the page deliberately non accessibility with a few issues. use plain html
-```
-
-**Result**: Two HTML files, 13+ accessibility patterns, automated testing workflows, and comprehensive learning guide.
-
 ## 🤖 AI Analysis Setup
 
 Quick setup for GPT-4.1 accessibility analysis:
 
-1. **Get access** at [github.com/marketplace/models](https://github.com/marketplace/models)
-2. **Create token** with Models scope in GitHub Settings  
-3. **Add secret** `MODELS_TOKEN` to repository
-4. **Run automatically** on pushes/PRs or manually in Actions tab
-
----
-
-### Setup Instructions
-
-#### 1. Get GitHub Models Access
-GitHub Models provides access to advanced AI models including GPT-4.1:
+### 1. Get GitHub Models Access
 - Visit [GitHub Models](https://github.com/marketplace/models)
 - Sign in with your GitHub account
 - Test models directly in the interface
 
-#### 2. Configure Repository Secrets
+### 2. Configure Repository Secrets
 1. **Create Personal Access Token**:
    - Go to GitHub Settings → Developer settings → Personal access tokens → Fine-grained tokens
    - Create token with `Models` scope enabled
@@ -169,7 +152,7 @@ GitHub Models provides access to advanced AI models including GPT-4.1:
    - Value: Paste your token
    - Click **Add secret**
 
-#### 3. Run the Analysis
+### 3. Run the Analysis
 The AI checker runs automatically on pushes and pull requests, or manually via Actions tab.
 
 ### Sample AI Output
@@ -182,4 +165,33 @@ The AI checker runs automatically on pushes and pull requests, or manually via A
 - **User Impact**: Screen reader users cannot understand image content
 ```
 
+## 📋 WCAG Guidelines
+
+- **Level A**: Minimum accessibility
+- **Level AA**: Standard level (recommended)  
+- **Level AAA**: Highest level (government/critical services)
+
+Target **WCAG 2.1 AA** for best balance of accessibility and practicality.
+
+## 📚 Resources
+
+- [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- [WebAIM](https://webaim.org/) - Practical resources and tools
+- [A11y Project](https://www.a11yproject.com/) - Community checklist
+- [MDN Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
+
+## Next Steps
+- Compare your fixes with `accessibility-fixed-demo.html`
+- Run the AI analyzer locally: `python ai_accessibility_analyzer.py`
+- Explore the GitHub Actions workflows that ran automatically
+
 ---
+
+### How This Was Created
+
+Generated with AI using this prompt:
+```
+create a simple html file to showcase how to fix accessibility issues. make the page deliberately non accessibility with a few issues. use plain html
+```
+
+**Result**: Two HTML files, 13+ accessibility patterns, automated testing workflows, and comprehensive learning guide.
