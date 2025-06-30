@@ -95,7 +95,7 @@ python -m http.server 8080
 pa11y http://localhost:8080/accessibility-issues-demo.html --standard WCAG2AA
 
 # AI Analysis (requires MODELS_TOKEN)
-pip install requests
+pip install -r requirements.txt
 python ai_accessibility_analyzer.py
 ```
 
