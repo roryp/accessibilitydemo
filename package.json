@@ -3,5 +3,10 @@
     "@axe-core/cli": "^4.10.1",
     "@axe-core/puppeteer": "^4.10.1",
     "serve": "^14.2.4"
+  },
+  "scripts": {
+    "test": "node run-axe-tests.js",
+    "start": "serve . -l 3000",
+    "report": "node generate-report.js"
   }
 }
