@@ -84,10 +84,11 @@ Three CI/CD workflows run on every push and PR:
 
 ### Local Testing Commands
 ```bash
-# axe-core
-npm install --save-dev @axe-core/cli serve
-npx serve . -l 3000 &
-npx axe http://localhost:3000/accessibility-issues-demo.html
+# axe-core via npm scripts
+npm install
+npm run start &
+npm test
+npm run report
 
 # Pa11y
 npm install -g pa11y-ci
