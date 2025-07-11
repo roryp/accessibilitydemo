@@ -4,6 +4,8 @@ Move the **[accessibilitydemo](https://github.com/roryp/accessibilitydemo)** rep
 
 > **Flow:** Manual discovery → Semi-AI fixes → Full-AI agent → CI validation
 
+![alt text](sequence.png)
+
 ## Target File
 
 This demo focuses on fixing **`accessibility-issues-demo.html`**—a deliberately broken HTML file containing common accessibility violations that need to be resolved to meet WCAG 2.1 AA standards.
