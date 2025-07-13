@@ -6,7 +6,7 @@ This repository demonstrates how to use AI tools like GitHub Copilot to fix acce
 
 > **Flow:** Manual discovery → Semi-AI fixes → Full-AI agent → CI validation
 
-![alt text](sequence.png)
+![Accessibility demo flow sequence diagram](sequence.png)
 
 ## Prerequisites
 
@@ -53,7 +53,7 @@ This repository demonstrates how to use AI tools like GitHub Copilot to fix acce
 
 - **Get a GitHub Models Token**:
   - Visit [GitHub Models Marketplace](https://github.com/marketplace/models)
-  - Sign up for access to GitHub Models
+  - Sign up for GitHub Models access
   - Generate an API token
 - **Add Repository Secret**:
   - Go to your repository settings
@@ -100,8 +100,8 @@ You'll fix 13+ accessibility violations:
 
 ---
 
-### How the initial html test files were created
+### How the Initial HTML Test Files Were Created
 
 ```
-@workspace create a simple html file to showcase how to fix accessibility issues. make the page deliberately non accessibility with a few issues. use plain html
+@workspace create a simple html file to showcase how to fix accessibility issues. make the page deliberately non-accessible with a few issues. use plain html
 ```
