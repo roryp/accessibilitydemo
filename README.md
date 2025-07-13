@@ -1,12 +1,12 @@
 # AI Accessibility Demo 
 
-<img src="image.png" width="50%" alt="AI Accessibility Demo">
+<img src="./screenshots/image.png" width="50%" alt="AI Accessibility Demo">
 
 This [repository](https://github.com/roryp/accessibilitydemo) demonstrates how to use AI tools like GitHub Copilot to fix accessibility issues in web applications, moving from manual testing to full automation.
 
 > **Flow:** Manual discovery → Semi-AI fixes → Full-AI agent → CI validation
 
-![Accessibility demo flow sequence diagram](sequence.png)
+![Accessibility demo flow sequence diagram](./screenshots/sequence.png)
 
 ## Prerequisites
 
