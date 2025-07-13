@@ -2,7 +2,7 @@
 
 <img src="image.png" width="50%" alt="AI Accessibility Demo">
 
-Move the **[accessibilitydemo](https://github.com/roryp/accessibilitydemo)** repository from failing WCAG checks to full compliance without touching a terminal—everything happens in your **browser** or **VS Code**.
+This repository demonstrates how to use AI tools like GitHub Copilot to fix accessibility issues in web applications, moving from manual testing to full automation.
 
 > **Flow:** Manual discovery → Semi-AI fixes → Full-AI agent → CI validation
 
