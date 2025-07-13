@@ -49,17 +49,18 @@ Move the **[accessibilitydemo](https://github.com/roryp/accessibilitydemo)** rep
      - **pa11y.yml** - WCAG2AA compliance testing  
      - **ai_accessibility_check.yml** - AI-powered analysis
    
-   #### Optional: Enable Enhanced AI Analysis (needed for ai_accessibility_check.yml)
-   - **Get a GitHub Models Token**:
-     - Visit [GitHub Models Marketplace](https://github.com/marketplace/models)
-     - Sign up for access to GitHub Models
-     - Generate an API token
-   - **Add Repository Secret**:
-     - Go to your repository settings
-     - Navigate to Secrets and variables → Actions
-     - Click "New repository secret"
-     - Name: `MODELS_TOKEN`
-     - Value: Your GitHub Models API token
+#### 5.1 (Optional): Enable Enhanced AI Analysis (needed for ai_accessibility_check.yml)
+
+- **Get a GitHub Models Token**:
+  - Visit [GitHub Models Marketplace](https://github.com/marketplace/models)
+  - Sign up for access to GitHub Models
+  - Generate an API token
+- **Add Repository Secret**:
+  - Go to your repository settings
+  - Navigate to Secrets and variables → Actions
+  - Click "New repository secret"
+  - Name: `MODELS_TOKEN`
+  - Value: Your GitHub Models API token
 
 ### 6. Delegating Future Work to Copilot Agent
    - Create a GitHub issue: "Implement keyboard-only navigation support"
