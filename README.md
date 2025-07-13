@@ -1,6 +1,6 @@
-# Accessibility Demo - IDE & Browser-Only Walk-through
+# AI Accessibility Demo 
 
-![image](image.png)
+<img src="image.png" width="50%" alt="AI Accessibility Demo">
 
 Move the **[accessibilitydemo](https://github.com/roryp/accessibilitydemo)** repository from failing WCAG checks to full compliance without touching a terminal—everything happens in your **browser** or **VS Code**.
 
