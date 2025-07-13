@@ -63,6 +63,7 @@ Move the **[accessibilitydemo](https://github.com/roryp/accessibilitydemo)** rep
   - Value: Your GitHub Models API token
 
 ### 6. Delegating Future Work to Copilot Agent
+   - [Enable Copilot agent access](https://github.com/settings/copilot/coding_agent) to work on all repositories
    - Create a GitHub issue: "Implement keyboard-only navigation support"
    - Assign to **@github-copilot**
    - The agent creates a branch, commits fixes, and opens a PR
@@ -94,7 +95,7 @@ You'll fix 13+ accessibility violations:
 ## Resources
 
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/) - Target **Level AA** for best practice
-- [WebAIM](https://webaim.org/) - Practical accessibility resources
+- [Copilot coding agent](https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/about-copilot-coding-agent)
 - [Accessibility Insights](https://accessibilityinsights.io/) - Microsoft's testing tools
 
 ---
