@@ -102,9 +102,6 @@ You'll fix 13+ accessibility violations:
 
 ### How the initial html test files were created
 
-Generated with AI using Claude's VS Code workspace command:
 ```
 @workspace create a simple html file to showcase how to fix accessibility issues. make the page deliberately non accessibility with a few issues. use plain html
 ```
-
-**Result**: Two HTML files, 13+ accessibility patterns, automated testing workflows, and comprehensive learning guide.
