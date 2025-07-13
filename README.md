@@ -19,40 +19,52 @@ Move the **[accessibilitydemo](https://github.com/roryp/accessibilitydemo)** rep
 ## Complete Demo Flow
 
 ### 1. Setup (UI only)
-1. **Fork** the repository on GitHub
-2. In VS Code choose **File → Clone Repository** and paste the URL of **your fork**
-3. Open the workspace and choose **Trust** when prompted
+   - **Fork** the repository on GitHub
+   - In VS Code choose **File → Clone Repository** and paste the URL of **your fork**
+   - Open the workspace and choose **Trust** when prompted
 
 ### 2. Initial Testing - Accessibility Insights & Axe Linter
-1. Open **`accessibility-issues-demo.html`** in Chrome/Edge
-2. Click the **Accessibility Insights for Web** extension icon
-3. Run a **FastPass** to capture an automated + tab stops report
-4. In VS Code, check the **Problems** panel for Axe Linter issues
+   - Open **`accessibility-issues-demo.html`** in Chrome/Edge
+   - Click the **Accessibility Insights for Web** extension icon
+   - Run a **FastPass** to capture an automated + tab stops report
+   - In VS Code, check the **Problems** panel for Axe Linter issues
 
 ### 3. Semi-AI Fixes with Copilot Completions
-1. Add guiding comments like `<!-- TODO: add alt text -->` and press **Tab**
-2. Stage changes and commit through Source Control panel
+   - Add guiding comments like `<!-- TODO: add alt text -->` and press **Tab**
+   - Stage changes and commit through Source Control panel
 
 ### 4. Full AI Fixes with Copilot Agent
-1. Open **Copilot Chat** (Ctrl+Alt+I)
-2. Prompt:
-   ```
-   Fix all accessibility issues in accessibility-issues-demo.html to meet WCAG 2.1 AA standards. 
-   Address color contrast, semantic structure, headings, labels, alt text, focus management, 
-   keyboard accessibility, and any other common accessibility problems.
-   ```
-3. Review → Accept → Commit & Push
+   - Open **Copilot Chat** (Ctrl+Alt+I)
+   - Prompt:
+     ```
+     Fix all accessibility issues in accessibility-issues-demo.html to meet WCAG 2.1 AA standards. 
+     Address color contrast, semantic structure, headings, labels, alt text, focus management, 
+     keyboard accessibility, and any other common accessibility problems.
+     ```
+   - Review → Accept → Commit & Push
 
 ### 5. Continuous Validation - GitHub Actions
-Three workflows run automatically on PR creation:
-- **accessibility-check.yml** - axe-core testing with HTML reports
-- **pa11y.yml** - WCAG2AA compliance testing  
-- **ai_accessibility_check.yml** - AI-powered analysis
+   - Three workflows run automatically on PR creation:
+     - **accessibility-check.yml** - axe-core testing with HTML reports
+     - **pa11y.yml** - WCAG2AA compliance testing  
+     - **ai_accessibility_check.yml** - AI-powered analysis
+   
+   #### Optional: Enable Enhanced AI Analysis (needed for ai_accessibility_check.yml)
+   - **Get a GitHub Models Token**:
+     - Visit [GitHub Models Marketplace](https://github.com/marketplace/models)
+     - Sign up for access to GitHub Models
+     - Generate an API token
+   - **Add Repository Secret**:
+     - Go to your repository settings
+     - Navigate to Secrets and variables → Actions
+     - Click "New repository secret"
+     - Name: `MODELS_TOKEN`
+     - Value: Your GitHub Models API token
 
 ### 6. Delegating Future Work to Copilot Agent
-1. Create a GitHub issue: "Implement keyboard-only navigation support"
-2. Assign to **@github-copilot**
-3. The agent creates a branch, commits fixes, and opens a PR
+   - Create a GitHub issue: "Implement keyboard-only navigation support"
+   - Assign to **@github-copilot**
+   - The agent creates a branch, commits fixes, and opens a PR
 
 ## What You'll Learn
 
