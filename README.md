@@ -6,8 +6,6 @@ Move the **[accessibilitydemo](https://github.com/roryp/accessibilitydemo)** rep
 
 > **Flow:** Manual discovery → Semi-AI fixes → Full-AI agent → CI validation
 
-![alt text](sequence.png)
-
 ## Prerequisites
 
 - VS Code with GitHub Copilot
@@ -72,17 +70,12 @@ You'll fix 13+ accessibility violations:
 | Full AI fix | Copilot coding agent | VS Code Chat |
 | Safeguards | Three GitHub Actions | PR Checks tab |
 
-## Quick Testing
-
-- **Keyboard navigation**: Tab through both HTML files
-- **Screen reader**: Test with NVDA, JAWS, or VoiceOver
-- **Browser tools**: Run Lighthouse accessibility audit
+![alt text](sequence.png)
 
 ## Resources
 
-- [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/) - Target **Level AA** for best practice
-- [WebAIM](https://webaim.org/) - Practical accessibility resources
 - [Accessibility Insights](https://accessibilityinsights.io/) - Microsoft's testing tools
+- [Axe Linter for VS Code](https://marketplace.visualstudio.com/items?itemName=deque-systems.vscode-axe-linter) - Automated accessibility checks
 
 ---
 
