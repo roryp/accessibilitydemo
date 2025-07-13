@@ -65,7 +65,7 @@ This [repository](https://github.com/roryp/accessibilitydemo) demonstrates how t
 ### 6. Delegating Future Work to Copilot Agent
    - [Enable Copilot agent access](https://github.com/settings/copilot/coding_agent) to work on all repositories
    - Create a GitHub issue: "Implement keyboard-only navigation support"
-   - Assign to **@github-copilot**
+   - Assign issue to **@copilot** ![assigned to copilot](./screenshots/image-1.png)
    - The agent creates a branch, commits fixes, and opens a PR
 
 ## What You'll Learn
