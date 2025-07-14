@@ -98,6 +98,40 @@ You'll fix 13+ accessibility violations:
 - [Copilot coding agent](https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/about-copilot-coding-agent)
 - [Accessibility Insights](https://accessibilityinsights.io/) - Microsoft's testing tools
 
+
+## Manual Testing with Axe
+
+You can also run accessibility tests manually using the included `run-axe-tests.js` script:
+
+**Prerequisites:** Make sure Node.js dependencies are installed:
+```bash
+npm install
+```
+
+1. **Start a local server** to serve the HTML files:
+   ```bash
+   npx serve -p 3000
+   ```
+
+2. **Run the axe accessibility tests** (in a new terminal):
+   ```bash
+   node run-axe-tests.js
+   ```
+
+3. **Generate an HTML report** comparing both demos:
+   ```bash
+   node generate-report.js
+   ```
+
+4. **View the report**: Open `accessibility-report.html` in your browser to see:
+   - Side-by-side comparison of issues vs fixed demos
+   - Detailed violation descriptions and affected elements
+   - Specific recommendations for fixing each issue
+
+The tests will output JSON results and show how many violations were found in each demo.
+
+> **Note:** The `requirements.txt` file is only needed if you want to run the Python-based AI accessibility analyzer script separately - currently run by the github actions workflow.
+
 ---
 
 ### How the Initial HTML Test Files Were Created
