@@ -46,7 +46,7 @@ This [repository](https://github.com/roryp/accessibilitydemo) demonstrates how t
 ### 5. Continuous Validation - GitHub Actions
    - Three workflows run automatically on PR creation:
      - **accessibility-check.yml** - axe-core testing with HTML reports
-     - **pa11y.yml** - WCAG2AA compliance testing  
+     - **pa11y.yml** - similar to the above but open source rules engine
      - **ai_accessibility_check.yml** - AI-powered analysis
    
 #### 5.1 (Optional): Enable Enhanced AI Analysis (needed for ai_accessibility_check.yml)
