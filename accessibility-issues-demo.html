@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accessibility Issues Demo - What NOT to Do</title>
     <style>
         body {
-            background-color: #00bbff;
-            color: #ffffff;
+            background-color: #ffffff;
+            color: #333333;
             font-family: Arial, sans-serif;
+            line-height: 1.6;
         }
         h1, h2 {
-            color: #102840;
+            color: #1a365d;
         }
         .container {
-            margin: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
         }
         .low-contrast {
-            background-color: #222;
-            color: #fff;
-            padding: 10px;
+            background-color: #f8f9fa;
+            color: #333333;
+            padding: 15px;
+            border-left: 4px solid #007bff;
         }
         .small-text {
             font-size: 16px;
@@ -37,6 +43,42 @@
             padding: 8px;
         }
         /* Remove blinking animation for accessibility */
+        button {
+            background-color: #0056b3;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #003d82;
+        }
+        button:focus {
+            outline: 3px solid #80bdff;
+            outline-offset: 2px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            max-width: 400px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: 3px solid #80bdff;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
@@ -54,45 +96,56 @@
         <img src="important-chart.jpg" width="300" height="200" alt="Bar chart showing quarterly sales data">
         <img src="decorative-icon.png" alt="">
 
-        <!-- Fixed: Form with proper labels -->
+        <!-- Fixed: Form with proper labels and fieldset structure -->
         <form>
-            <h2>Contact Form</h2>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name">
-            <br><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email">
-            <br><br>
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" name="phone" placeholder="Phone number">
-            <br><br>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" placeholder="Your message here"></textarea>
-            <br><br>
-            <!-- Fixed: Semantic button -->
-            <button type="submit">Submit</button>
+            <fieldset>
+                <legend>Contact Information</legend>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone number">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Your message here" required></textarea>
+                </div>
+                <!-- Fixed: Semantic button -->
+                <button type="submit">Submit</button>
+            </fieldset>
         </form>
 
         <!-- Fixed: Descriptive links -->
         <p>For more information, <a href="info.html">read about our accessibility features</a> or <a href="details.html">get detailed information</a></p>
 
-        <!-- Fixed: Table with headers -->
+        <!-- Fixed: Table with headers and proper structure -->
         <table>
-            <tr>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Stock</th>
-            </tr>
-            <tr>
-                <td>Widget A</td>
-                <td>$19.99</td>
-                <td>In Stock</td>
-            </tr>
-            <tr>
-                <td>Widget B</td>
-                <td>$29.99</td>
-                <td>Out of Stock</td>
-            </tr>
+            <caption>Product inventory and pricing information</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Widget A</td>
+                    <td>$19.99</td>
+                    <td>In Stock</td>
+                </tr>
+                <tr>
+                    <td>Widget B</td>
+                    <td>$29.99</td>
+                    <td>Out of Stock</td>
+                </tr>
+            </tbody>
         </table>
 
         <!-- Fixed: Removed blinking content -->
@@ -108,7 +161,7 @@
         </video>
 
         <!-- Fixed: Semantic dropdown -->
-        <div>
+        <div class="form-group">
             <label for="country">Select your country:</label>
             <select id="country" name="country">
                 <option value="">Select Country</option>
@@ -119,15 +172,26 @@
         </div>
 
         <!-- Fixed: Improved focus management and semantics for interactive element -->
-        <button style="background: blue; color: white; padding: 10px; margin: 10px;">This button is properly focusable and interactive</button>
+        <button type="button" onclick="alert('Button clicked!')" aria-describedby="button-help">
+            This button is properly focusable and interactive
+        </button>
+        <p id="button-help" style="font-size: 14px; color: #666; margin-top: 5px;">
+            This button demonstrates proper focus management and semantic markup.
+        </p>
 
     </main>
 
     <script>
-        // No custom JS needed for dropdown or button now
-        function submitForm() {
-            alert("Form submitted!");
-        }
+        // Form submission handling with accessibility
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Form submitted successfully!');
+                });
+            }
+        });
     </script>
 </body>
 </html>
