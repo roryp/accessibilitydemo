@@ -29,6 +29,19 @@
         .hidden-label {
             display: none;
         }
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #000;
+            color: #fff;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+        }
+        .skip-link:focus {
+            top: 6px;
+        }
         table {
             border-collapse: collapse;
             width: 100%;
@@ -47,7 +60,10 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Skip link for keyboard navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <div class="container" id="main-content">
         <!-- Issue 1: Missing main landmark and heading hierarchy -->
         <div>
             <h3>Welcome to Our Website</h3>
@@ -79,7 +95,7 @@
             <textarea placeholder="Your message here"></textarea>
             
             <!-- Issue 5: Non-semantic button -->
-            <div class="button-like" onclick="submitForm()">Submit</div>
+            <div class="button-like" onclick="submitForm()" onkeydown="handleButtonKeydown(event, submitForm)" tabindex="0" role="button">Submit</div>
         </form>
 
         <!-- Issue 6: Links without descriptive text -->
@@ -119,18 +135,18 @@
         <!-- Issue 12: Inaccessible custom dropdown -->
         <div>
             <p>Select your country:</p>
-            <div onclick="toggleDropdown()" style="border: 1px solid black; padding: 5px; cursor: pointer;">
+            <div onclick="toggleDropdown()" onkeydown="handleDropdownKeydown(event)" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" style="border: 1px solid black; padding: 5px; cursor: pointer;">
                 Select Country ▼
             </div>
-            <div id="dropdown" style="display: none; border: 1px solid black;">
-                <div onclick="selectCountry('USA')">USA</div>
-                <div onclick="selectCountry('Canada')">Canada</div>
-                <div onclick="selectCountry('Mexico')">Mexico</div>
+            <div id="dropdown" style="display: none; border: 1px solid black;" role="menu">
+                <div onclick="selectCountry('USA')" onkeydown="handleOptionKeydown(event, 'USA')" tabindex="0" role="menuitem">USA</div>
+                <div onclick="selectCountry('Canada')" onkeydown="handleOptionKeydown(event, 'Canada')" tabindex="0" role="menuitem">Canada</div>
+                <div onclick="selectCountry('Mexico')" onkeydown="handleOptionKeydown(event, 'Mexico')" tabindex="0" role="menuitem">Mexico</div>
             </div>
         </div>
 
         <!-- Issue 13: Focus management problems -->
-        <div tabindex="0" onclick="doSomething()" style="background: blue; color: white; padding: 10px; margin: 10px;">
+        <div tabindex="0" onclick="doSomething()" onkeydown="handleButtonKeydown(event, doSomething)" role="button" style="background: blue; color: white; padding: 10px; margin: 10px;">
             This div pretends to be interactive but has poor focus management
         </div>
 
@@ -143,16 +159,88 @@
 
         function toggleDropdown() {
             var dropdown = document.getElementById("dropdown");
-            dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+            var isOpen = dropdown.style.display !== "none";
+            dropdown.style.display = isOpen ? "none" : "block";
+            
+            // Update aria-expanded
+            var button = dropdown.previousElementSibling;
+            button.setAttribute("aria-expanded", !isOpen);
         }
 
         function selectCountry(country) {
             alert("Selected: " + country);
             document.getElementById("dropdown").style.display = "none";
+            
+            // Update aria-expanded
+            var button = document.getElementById("dropdown").previousElementSibling;
+            button.setAttribute("aria-expanded", "false");
         }
 
         function doSomething() {
             alert("Something happened!");
+        }
+
+        // Keyboard navigation support
+        function handleButtonKeydown(event, callback) {
+            // Handle Enter and Space key for button-like elements
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                callback();
+            }
+        }
+
+        function handleDropdownKeydown(event) {
+            // Handle Enter, Space, and Arrow keys for dropdown
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleDropdown();
+                
+                // Focus first option if dropdown is now open
+                var dropdown = document.getElementById("dropdown");
+                if (dropdown.style.display === "block") {
+                    var firstOption = dropdown.querySelector('[role="menuitem"]');
+                    if (firstOption) {
+                        firstOption.focus();
+                    }
+                }
+            } else if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                toggleDropdown();
+                
+                // Focus first option
+                var dropdown = document.getElementById("dropdown");
+                if (dropdown.style.display === "block") {
+                    var firstOption = dropdown.querySelector('[role="menuitem"]');
+                    if (firstOption) {
+                        firstOption.focus();
+                    }
+                }
+            }
+        }
+
+        function handleOptionKeydown(event, country) {
+            var dropdown = document.getElementById("dropdown");
+            var options = dropdown.querySelectorAll('[role="menuitem"]');
+            var currentIndex = Array.from(options).indexOf(event.target);
+            
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                selectCountry(country);
+            } else if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                var nextIndex = (currentIndex + 1) % options.length;
+                options[nextIndex].focus();
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                var prevIndex = (currentIndex - 1 + options.length) % options.length;
+                options[prevIndex].focus();
+            } else if (event.key === 'Escape') {
+                event.preventDefault();
+                dropdown.style.display = "none";
+                var button = dropdown.previousElementSibling;
+                button.setAttribute("aria-expanded", "false");
+                button.focus();
+            }
         }
     </script>
 </body>
