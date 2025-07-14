@@ -101,7 +101,7 @@ You'll fix 13+ accessibility violations:
 
 ## Manual Testing with Axe
 
-You can also run accessibility tests manually using the included `run-axe-tests.js` script:
+You can also run axe playwright accessibility tests manually using the included `run-axe-tests.js` script:
 
 **Prerequisites:** Make sure Node.js dependencies are installed:
 ```bash
@@ -113,7 +113,7 @@ npm install
    npx serve -p 3000
    ```
 
-2. **Run the axe accessibility tests** (in a new terminal):
+2. **Run the axe playwright accessibility tests** (in a new terminal):
    ```bash
    node run-axe-tests.js
    ```
