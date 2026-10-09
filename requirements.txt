@@ -1,1 +1,1 @@
-requests
+github-copilot-sdk>=1.0.16

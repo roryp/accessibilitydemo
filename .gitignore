@@ -138,3 +138,7 @@ __pycache__/ai_accessibility_analyzer.cpython-313.pyc
 accessibility-report.html
 accessibility-issues-results.json
 accessibility-fixed-results.json
+
+# AI analyzer outputs (sample kept in reports/)
+/ai_accessibility_report.md
+/ai_accessibility_results.json

@@ -1,9 +1,12 @@
 name: AI Accessibility Check
 
-# This workflow can run with or without the MODELS_TOKEN secret
-# For full AI analysis, get your GitHub Models token from: https://github.com/marketplace/models
-# Add it as a repository secret named: MODELS_TOKEN
-# Without the token, the workflow will run in mock analysis mode
+# Uses the GitHub Copilot SDK (https://github.com/github/copilot-sdk) for AI analysis.
+# Authentication (either option):
+#   - Personal repos: add a COPILOT_GITHUB_TOKEN repository secret containing a fine-grained
+#     PAT with the "Copilot Requests" permission (account must have a Copilot subscription).
+#   - Organization repos: no secret needed if the org enables "Allow use of Copilot CLI billed
+#     to the organization"; the built-in GITHUB_TOKEN with copilot-requests: write is used.
+# Without Copilot authentication, the workflow runs in mock analysis mode.
 
 on:
   push:
@@ -16,6 +19,7 @@ permissions:
   contents: read
   pull-requests: write
   issues: write
+  copilot-requests: write
 
 jobs:
   ai-accessibility-check:
@@ -27,27 +31,27 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Install Python dependencies
         run: |
-          pip install requests
+          pip install -r requirements.txt
 
-      - name: Check for MODELS_TOKEN (optional)
+      - name: Check for COPILOT_GITHUB_TOKEN (optional)
         run: |
-          if [ -z "${{ secrets.MODELS_TOKEN }}" ]; then
-            echo "::notice::MODELS_TOKEN secret is not configured. Running in mock analysis mode."
-            echo "::notice::For full AI analysis, add the MODELS_TOKEN secret to your repository settings."
-            echo "::notice::Get your token from: https://github.com/marketplace/models"
+          if [ -z "${{ secrets.COPILOT_GITHUB_TOKEN }}" ]; then
+            echo "::notice::COPILOT_GITHUB_TOKEN secret is not configured. Falling back to the built-in GITHUB_TOKEN (org repos only); otherwise mock analysis mode is used."
           else
-            echo "::notice::MODELS_TOKEN found. Running with full AI analysis."
+            echo "::notice::COPILOT_GITHUB_TOKEN found. Running with full AI analysis."
           fi
 
       - name: Run AI accessibility analysis
         env:
-          MODELS_TOKEN: ${{ secrets.MODELS_TOKEN }}
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COPILOT_MODEL: ${{ vars.COPILOT_MODEL }}
         run: |
           python ai_accessibility_analyzer.py
 

@@ -5,7 +5,7 @@ Baseline scan – run Axe-linter to list WCAG 2.1 AA violations
 Auto-fix – prompt GitHub Copilot to resolve color, structure, focus, keyboard, alt-text issues
 Peer review – open PR and request Copilot code-review https://github.com/roryp/accessibilitydemo/pull/9
 CI proof – GitHub Actions ai a11y scan (pass expected) https://github.com/roryp/accessibilitydemo/actions/runs/15807227466
-    ⁠Extendibility – highlight GitHub Marketplace LLM models https://github.com/marketplace/models
+    ⁠Extendibility – highlight the GitHub Copilot SDK powering the AI scan https://github.com/github/copilot-sdk
 Showcase agents – walk through Coding Agent fix flow
 • Issue https://github.com/roryp/accessibilitydemo/issues/7
 • Session https://github.com/roryp/accessibilitydemo/pull/8/agent-sessions/3990b7a6-268f-4971-9d4d-8ae8701766a2
@@ -37,8 +37,8 @@ Fix all accessibility issues in this HTML file to meet WCAG 2.1 AA standards. Ad
 
 === GitHub Actions
 
-=== GitHub Marketplace Models ===
-https://github.com/marketplace/models
+=== GitHub Copilot SDK ===
+https://github.com/github/copilot-sdk
 
 Accessibility scan result:
 https://github.com/roryp/accessibilitydemo/actions/runs/15807227466

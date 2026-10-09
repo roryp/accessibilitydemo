@@ -47,20 +47,18 @@ This [repository](https://github.com/roryp/accessibilitydemo) demonstrates how t
    - Three workflows run automatically on PR creation:
      - **accessibility-check.yml** - axe-core testing with HTML reports
      - **pa11y.yml** - similar to the above but open source rules engine
-     - **ai_accessibility_check.yml** - AI-powered analysis
+     - **ai_accessibility_check.yml** - AI-powered analysis via the [GitHub Copilot SDK](https://github.com/github/copilot-sdk)
    
 #### 5.1 (Optional): Enable Enhanced AI Analysis (needed for ai_accessibility_check.yml)
 
-- **Get a GitHub Models Token**:
-  - Visit [GitHub Models Marketplace](https://github.com/marketplace/models)
-  - Sign up for GitHub Models access
-  - Generate an API token
+- **Create a token**: a [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new) with the **Copilot Requests** permission (requires a GitHub Copilot subscription; the free tier works)
 - **Add Repository Secret**:
   - Go to your repository settings
   - Navigate to Secrets and variables → Actions
   - Click "New repository secret"
-  - Name: `MODELS_TOKEN`
-  - Value: Your GitHub Models API token
+  - Name: `COPILOT_GITHUB_TOKEN`
+  - Value: Your token
+- Organization repos can skip the secret and use the built-in `GITHUB_TOKEN` instead. See [.github/workflows/README.md](./.github/workflows/README.md).
 
 ### 6. Delegating Future Work to Copilot Agent
    - [Enable Copilot agent access](https://github.com/settings/copilot/coding_agent) to work on all repositories
@@ -130,7 +128,12 @@ npm install
 
 The tests will output JSON results and show how many violations were found in each demo.
 
-> **Note:** The `requirements.txt` file is only needed if you want to run the Python-based AI accessibility analyzer script separately - currently run by the github actions workflow.
+> **Note:** The `requirements.txt` file is only needed if you want to run the Python-based AI accessibility analyzer locally (it's also run by the GitHub Actions workflow). It uses the GitHub Copilot SDK and your existing `gh auth login` credentials:
+> ```bash
+> pip install -r requirements.txt
+> python ai_accessibility_analyzer.py   # optional: set COPILOT_MODEL to pick a model
+> ```
+> A sample report is in [reports/ai_accessibility_report.md](./reports/ai_accessibility_report.md).
 
 ---
 
