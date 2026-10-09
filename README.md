@@ -90,6 +90,33 @@ You'll fix 13+ accessibility violations:
 - **Screen reader**: Test with NVDA, JAWS, or VoiceOver
 - **Browser tools**: Run Lighthouse accessibility audit
 
+### Copilot Browser-Tool Smoke Test
+
+Prompt Copilot Chat with:
+
+```text
+Quickly test this page with the browser tools.
+```
+
+Copilot can inspect a page shared from VS Code without opening a terminal:
+
+- It attaches to the shared browser page and reads the rendered accessibility tree.
+- It uses Playwright in the live page to inspect headings, image alternatives, form labels, tables, animation, keyboard focus, skip links, and computed font sizes.
+- It reports findings without installing dependencies, starting a server, or modifying files.
+
+The smoke test of `accessibility-issues-demo.html` found:
+
+- Incorrect heading order (`h3` before `h1`)
+- An image without alternative text and unnecessary text on a decorative image
+- A form control without an accessible label
+- A table without header cells or a caption
+- Blinking content and text rendered as small as `8px`
+- Interactive `div` elements in the keyboard tab order instead of native controls
+- A skip-link target without explicit focus management
+- Three resource-loading errors in the browser console
+
+> This is a quick structural smoke test, not a complete WCAG audit. Use axe-core or Accessibility Insights to verify rule IDs, color contrast, and WCAG conformance.
+
 ## Resources
 
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/) - Target **Level AA** for best practice
